@@ -23,17 +23,17 @@ public class EmployeeDao {
 
 	// É¾³ý²Ù×÷
 	public static boolean deleteEmployeeById(int id) throws Exception {
-		String sql = "DELETE FROM employee" + "WHERE e_id = ?";
+		String sql = "DELETE FROM employee WHERE e_id = ?";
 		int rst = sqlHelper.updateByPstmt(sql, id);
 		return rst == 1;
 	}
 
 	// ÐÞ¸Ä²Ù×÷
 	public static boolean updateEmployee(Employee emp) throws Exception {
-		String sql = "UPDATE employee SET e_name=?, e_username=?, e_gender=?, e_phone=?, e_department=?, e_position=?, e_salary=?"
+		String sql = "UPDATE employee SET e_name=?, e_username=?, e_gender=?,e_age=?, e_phone=?, e_department=?, e_position=?, e_salary=?"
 				+ "WHERE e_id=?";
-		int rst = sqlHelper.updateByPstmt(sql, emp.getName(), emp.getUsername(), emp.getGender(), emp.getAge(),
-				emp.getPhone(), emp.getDapartment(), emp.getPosition(), emp.getSalary(), emp.getId());
+		int rst = sqlHelper.updateByPstmt(sql, emp.getName(), emp.getUsername(), emp.getGender(), emp.getAge(), emp.getPhone(), emp.getDapartment(),
+				 emp.getPosition(), emp.getSalary(), emp.getId());
 		return rst == 1;
 	}
 

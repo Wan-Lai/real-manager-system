@@ -42,7 +42,7 @@ public class sqlHelper {
 		rs = stmt.executeQuery(sql);
 		return rs;
 	}
-	
+
 	/**
 	 * 查询
 	 */
@@ -81,7 +81,7 @@ public class sqlHelper {
 		rows = stmt.executeUpdate(sql);
 		return rows;
 	}
-	
+
 	/**
 	 * 增加、删除、修改
 	 * 
@@ -110,9 +110,10 @@ public class sqlHelper {
 		rows = pst.executeUpdate();
 		return rows;
 	}
-	
+
 	/**
 	 * Java SQL防注入
+	 * 
 	 * @param sql
 	 * @param param
 	 * @return
@@ -120,8 +121,8 @@ public class sqlHelper {
 	 */
 	public static PreparedStatement sql2pst(String sql, Object... param) throws SQLException {
 		PreparedStatement pst = con.prepareStatement(sql);
-		for(int i = 0; i < param.length; i++) {
-			pst.setObject(i, param[i]);
+		for (int i = 0; i < param.length; i++) {
+			pst.setObject(i + 1, param[i]);
 		}
 		return pst;
 	}
