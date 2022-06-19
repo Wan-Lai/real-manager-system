@@ -21,15 +21,15 @@ public class CustomerDao {
 
 	// 删除操作
 	public static boolean deleteCustomerById(int id) throws Exception {
-		String sql = "DELETE FROM customer" + "WHERE c_id = ?";
+		String sql = "DELETE FROM customer WHERE c_id = ?";
 		int rst = sqlHelper.updateByPstmt(sql, id);
 		return rst == 1;
 	}
 
 	// 修改操作
 	public static boolean updateCustomer(Customer cus) throws Exception {
-		String sql = "UPDATE employee SET c_name=?, c_buy_address=?, c_address=?, c_phone=?, c_id_num=?, c_id_statu=?, c_time=?, c_want_type=?, c_commend=?"
-				+ "WHERE e_id=?";
+		String sql = "UPDATE customer SET c_name=?, c_buy_address=?, c_address=?, c_phone=?, c_id_num=?, c_id_statu=?, c_time=?, c_want_type=?, c_commend=?"
+				+ "WHERE c_id=?";
 		int rst = sqlHelper.updateByPstmt(sql, cus.getName(), cus.getBuyaddress(), cus.getAddress(), cus.getPhone(),
 				cus.getIdnum(), cus.getIdstatu(), cus.getTime(), cus.getWanttype(), cus.getCommend(), cus.getId());
 		return rst == 1;
@@ -37,7 +37,7 @@ public class CustomerDao {
 
 	// 查询操作
 	public static List<Customer> queryAllCustomer() throws Exception {
-		String sql = "SELECT c_id, c_name, c_buy_address, c_address, c_phone, c_id_num, c_id_statu, c_time, c_want_type, c_commend FROM employee";
+		String sql = "SELECT c_id, c_name, c_buy_address, c_address, c_phone, c_id_num, c_id_statu, c_time, c_want_type, c_commend FROM customer";
 		ResultSet rst = sqlHelper.query(sql);
 		List<Customer> cuss = new ArrayList<Customer>();
 		while (rst.next()) {
