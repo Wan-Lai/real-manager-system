@@ -1,4 +1,4 @@
-package cn.lailab.bean;
+package cn.lailab.entity;
 
 public class House {
 	// Â¥ÅÌID

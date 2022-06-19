@@ -1,4 +1,4 @@
-package cn.lailab.bean;
+package cn.lailab.entity;
 
 public class Employee {
 	// 员工ID
@@ -19,6 +19,8 @@ public class Employee {
 	String position;
 	// 员工薪水
 	double salary;
+	
+	public Employee() {}
 
 	public Employee(int id, String name, String username, String gender, int age, String phone, String dapartment,
 			String position, double salary) {
