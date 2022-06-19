@@ -9,6 +9,8 @@ public class Customer {
 	String buyaddress;
 	// 顾客地址
 	String address;
+	// 顾客电话
+	String phone;
 	// 顾客身份证号
 	String idnum;
 	// 顾客身份证状态
@@ -20,12 +22,14 @@ public class Customer {
 	// 备注
 	String commend;
 
-	public Customer(int id, String name, String buyaddress, String address, String idnum, String idstatu, String time,
+	public Customer() {}
+	public Customer(int id, String name, String buyaddress, String address, String phone, String idnum, String idstatu, String time,
 			String wanttype, String commend) {
 		this.id = id;
 		this.name = name;
 		this.buyaddress = buyaddress;
 		this.address = address;
+		this.phone = phone;
 		this.idnum = idnum;
 		this.idstatu = idstatu;
 		this.time = time;
@@ -65,6 +69,14 @@ public class Customer {
 		this.address = address;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+	
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
 	public String getIdnum() {
 		return idnum;
 	}
