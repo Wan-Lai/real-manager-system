@@ -1,6 +1,6 @@
 package cn.lailab.entity;
 
-public class finance {
+public class Finance {
 	// 顾客ID
 	int cid;
 	// 员工ID
@@ -14,7 +14,10 @@ public class finance {
 	// 财务时间
 	String time;
 
-	public finance(int cid, int eid, double price, String paymentway, String type, String time) {
+	public Finance() {
+	}
+
+	public Finance(int cid, int eid, double price, String paymentway, String type, String time) {
 		this.cid = cid;
 		this.eid = eid;
 		this.price = price;

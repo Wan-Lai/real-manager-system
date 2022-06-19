@@ -11,37 +11,38 @@ import cn.lailab.sql.sqlHelper;
  * Employee操作
  */
 public class EmployeeDao {
-	
+
 	// 增加操作
 	public static boolean addEmployee(Employee emp) throws Exception {
-		String sql = "INSERT INTO employee(e_name, e_username, e_gender, e_age, e_phone, e_department, e_position, e_salary)" + 
-				"VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-		int rst = sqlHelper.updateByPstmt(sql, emp.getName(), emp.getUsername(), emp.getGender(), emp.getAge(), emp.getPhone(), emp.getDapartment(), emp.getPosition(), emp.getSalary());
+		String sql = "INSERT INTO employee(e_name, e_username, e_gender, e_age, e_phone, e_department, e_position, e_salary)"
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		int rst = sqlHelper.updateByPstmt(sql, emp.getName(), emp.getUsername(), emp.getGender(), emp.getAge(),
+				emp.getPhone(), emp.getDapartment(), emp.getPosition(), emp.getSalary());
 		return rst == 1;
 	}
-	
+
 	// 删除操作
 	public static boolean deleteEmployeeById(int id) throws Exception {
-		String sql = "DELETE FROM employee" + 
-				"WHERE e_id = ?";
+		String sql = "DELETE FROM employee" + "WHERE e_id = ?";
 		int rst = sqlHelper.updateByPstmt(sql, id);
 		return rst == 1;
 	}
-	
+
 	// 修改操作
 	public static boolean updateEmployee(Employee emp) throws Exception {
-		String sql = "UPDATE employee SET e_name=?, e_username=?, e_gender=?, e_phone=?, e_department=?, e_position=?, e_salary=?" + 
-				"WHERE e_id=?";
-		int rst = sqlHelper.updateByPstmt(sql, emp.getName(), emp.getUsername(), emp.getGender(), emp.getAge(), emp.getPhone(), emp.getDapartment(), emp.getPosition(), emp.getSalary(), emp.getId());
+		String sql = "UPDATE employee SET e_name=?, e_username=?, e_gender=?, e_phone=?, e_department=?, e_position=?, e_salary=?"
+				+ "WHERE e_id=?";
+		int rst = sqlHelper.updateByPstmt(sql, emp.getName(), emp.getUsername(), emp.getGender(), emp.getAge(),
+				emp.getPhone(), emp.getDapartment(), emp.getPosition(), emp.getSalary(), emp.getId());
 		return rst == 1;
 	}
-	
+
 	// 查询操作
 	public static List<Employee> queryAllEmployee() throws Exception {
 		String sql = "SELECT e_id, e_name, e_username, e_gender, e_age, e_phone, e_department, e_position, e_salary FROM employee";
 		ResultSet rst = sqlHelper.query(sql);
 		List<Employee> emps = new ArrayList<Employee>();
-		while(rst.next()) {
+		while (rst.next()) {
 			Employee emp = new Employee();
 			emp.setId(rst.getInt(1));
 			emp.setName(rst.getString(2));

@@ -22,9 +22,11 @@ public class Customer {
 	// ±¸×¢
 	String commend;
 
-	public Customer() {}
-	public Customer(int id, String name, String buyaddress, String address, String phone, String idnum, String idstatu, String time,
-			String wanttype, String commend) {
+	public Customer() {
+	}
+
+	public Customer(int id, String name, String buyaddress, String address, String phone, String idnum, String idstatu,
+			String time, String wanttype, String commend) {
 		this.id = id;
 		this.name = name;
 		this.buyaddress = buyaddress;
@@ -72,11 +74,11 @@ public class Customer {
 	public String getPhone() {
 		return phone;
 	}
-	
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+
 	public String getIdnum() {
 		return idnum;
 	}

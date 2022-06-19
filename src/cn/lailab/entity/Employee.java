@@ -19,8 +19,9 @@ public class Employee {
 	String position;
 	// Ô±¹¤Ð½Ë®
 	double salary;
-	
-	public Employee() {}
+
+	public Employee() {
+	}
 
 	public Employee(int id, String name, String username, String gender, int age, String phone, String dapartment,
 			String position, double salary) {

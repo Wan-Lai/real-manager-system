@@ -1,17 +1,18 @@
 package cn.lailab.sql;
 
 import java.sql.ResultSet;
+import java.util.List;
+
+import cn.lailab.dao.EmployeeDao;
+import cn.lailab.entity.Employee;
 
 public class test {
 	public static void main(String[] args) {
 		try {
-			String sql = "SELECT * FROM employee";
-			ResultSet rs = sqlHelper.query(sql);
-			while(rs.next()) {
-				String name = rs.getString("e_name");
-				System.out.println(name);
+			List<Employee> emps = EmployeeDao.queryAllEmployee();
+			for(Employee emp : emps) {
+				System.out.println(emp.getName());
 			}
-			sqlHelper.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

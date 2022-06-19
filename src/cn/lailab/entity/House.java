@@ -16,9 +16,12 @@ public class House {
 	// 操作人员
 	int eid;
 	// 楼盘时间
-	int time;
+	String time;
 
-	public House(int id, String name, String number, String type, double price, int erea, int eid, int time) {
+	public House() {
+	}
+
+	public House(int id, String name, String number, String type, double price, int erea, int eid, String time) {
 		this.id = id;
 		this.name = name;
 		this.number = number;
@@ -85,11 +88,11 @@ public class House {
 		this.eid = eid;
 	}
 
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(int time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 }
