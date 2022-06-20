@@ -7,7 +7,6 @@ import java.util.List;
 import cn.lailab.entity.Customer;
 import cn.lailab.sql.sqlHelper;
 
-
 public class CustomerDao {
 
 	// Ôö¼Ó²Ù×÷
