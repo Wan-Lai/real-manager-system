@@ -1,4 +1,5 @@
-﻿
+﻿var employees;
+var customers;
 
 window.onload = function() {
 	// 默认查看员工
@@ -8,100 +9,45 @@ window.onload = function() {
 // 查看员工信息
 function changeEmployee() {
 	var show_table = document.getElementById("data_table");
-	MyAjax("employee", "queryAll", function(result) {
-		var rst = result2employee(result);
-		console.log(rst);
+	MyAjax("employee", "queryAll", "", function(result) {
+		result = eval("(" + result + ")");
+		var rst = result2employee(result.message);
 		show_table.innerHTML = rst;
 	});
 }
 // 查看顾客信息
 function changeCustomer() { 
 	var show_table = document.getElementById("data_table");
-	MyAjax("customer", "queryAll", function(result) {
-		show_table.innerHTML = result2customer(result);
+	MyAjax("customer", "queryAll", "", function(result) {
+		result = eval("(" + result + ")");
+		show_table.innerHTML = result2customer(result.message);
 	});
 }
 // 查看账单信息
 function changeFinance() {
 	var show_table = document.getElementById("data_table");
-	MyAjax("finance", "queryAll", function(result) {
-		show_table.innerHTML = result2finance(result);
+	MyAjax("finance", "queryAll", "", function(result) {
+		result = eval("(" + result + ")");
+		show_table.innerHTML = result2finance(result.message);
 	});
 }
 // 查看楼盘信息
 function changeHouse() {
 	var show_table = document.getElementById("data_table");
-	MyAjax("house", "queryAll", function(result) {
-		show_table.innerHTML = result2house(result);
-	});
-}
-// 自定义Ajax
-function MyAjax(entity, operate, callback) {
-	var service;
-	var operate;
-	switch (entity) {
-		// 若为员工
-		case "employee":
-			service = "EmployeeService";
-			// 判断操作
-			switch(operate) {
-			// 查询员工
-			case "queryAll":
-				operate = "queryAll";
-				break;
-			}
-			break;
-		// 若为顾客
-		case "customer" :
-			service = "CustomerService";
-			// 判断操作
-			switch(operate) {
-			// 查询员工
-			case "queryAll":
-				operate = "queryAll";
-				break;
-			}
-			break;
-		// 若为账单
-		case "finance" :
-			service = "FinanceService";
-			// 判断操作
-			switch(operate) {
-			// 查询员工
-			case "queryAll":
-				operate = "queryAll";
-				break;
-			}
-			break;
-			// 若为楼盘
-		case "house" :
-			service = "HouseService";
-			// 判断操作
-			switch(operate) {
-			// 查询员工
-			case "queryAll":
-				operate = "queryAll";
-				break;
-			}
-			break;
-	}
-	$.ajax({
-		url : "./" + service + "?operate=" + operate,
-		method : "post",
-		success : function(result) {
-			callback(result);
-		}
+	MyAjax("house", "queryAll", "", function(result) {
+		result = eval("(" + result + ")");
+		show_table.innerHTML = result2house(result.message);
 	});
 }
 
 // 将Ajax返回值转换成Employee对象
 function result2employee(result) {
-	result = eval("(" + result + ")").message;
-	console.log(result);
+	employees = result;
+//	console.log(result);
 	var str = "";
 	str += "<tr>";
 	str += "<td></td>";
-	str += "<td colspan=2><input type='button' onclick='javascript:document.getElementsByClassName(\"dialog-reginster-employee\")[0].style.display=\"block\"' value='添加'/></td>";
+	str += "<td colspan=2><input type='button' onclick='addEmployee()' value='添加'/></td>";
 	str += "<td colspan=2><input type='button' value='删除'/></td>";
 	str += "<td colspan=5><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"employee\")'/></td>";
 	str += "</tr>";
@@ -133,6 +79,7 @@ function result2employee(result) {
 				str += "<tr>";
 				str += "<td><input type='checkbox' name='checkname' class='scheckbox' lang='"
 						+ id + "'/></td>"
+				str += "<td>" + id + "</td>";
 				str += "<td>" + name + "</td>";
 				str += "<td>" + username + "</td>";
 				str += "<td>" + gender + "</td>";
@@ -143,8 +90,8 @@ function result2employee(result) {
 				str += "<td>" + salary + "</td>";
 				str += "<td><input type='button' value='删除' onclick='deleteEmployee("
 						+ id
-						+ ")'/><input type='button' value='修改' onclick='modifyEmployee(\""
-						+ name + "\")'/></td>";
+						+ ")'/><input type='button' value='修改' onclick='updateEmployee(\""
+						+ id + "\")'/></td>";
 				str += "</tr>";
 			}
 		} else {
@@ -175,14 +122,14 @@ function result2employee(result) {
 }
 //将Ajax返回值转换成Customer对象
 function result2customer(result) {
-	result = eval("(" + result + ")").message;
-	console.log(result);
+//	console.log(result);
+	customers = result;
 	var str = "";
 	str += "<tr>";
 	str += "<td></td>";
-	str += "<td colspan=2><input type='button' onclick='javascript:document.getElementsByClassName(\"dialog-reginster-employee\")[0].style.display=\"block\"' value='添加'/></td>";
+	str += "<td colspan=2><input type='button' onclick='addCustomer()' value='添加'/></td>";
 	str += "<td colspan=2><input type='button' value='删除'/></td>";
-	str += "<td colspan=5><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"employee\")'/></td>";
+	str += "<td colspan=5><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"customer\")'/></td>";
 	str += "</tr>";
 	str += "<tr>";
 	str += "<th><input type='checkbox' name='checkname' id='fcheckbox' onclick='checkAll(this)'/></th>";
@@ -214,6 +161,7 @@ function result2customer(result) {
 				str += "<tr>";
 				str += "<td><input type='checkbox' name='checkname' class='scheckbox' lang='"
 						+ id + "'/></td>"
+				str += "<td>" + id + "</td>";
 				str += "<td>" + name + "</td>";
 				str += "<td>" + address + "</td>";
 				str += "<td>" + buyaddress + "</td>";
@@ -223,10 +171,10 @@ function result2customer(result) {
 				str += "<td>" + time + "</td>";
 				str += "<td>" + wanttype + "</td>";
 				str += "<td>" + commend + "</td>";
-				str += "<td><input type='button' value='删除' onclick='deleteEmployee("
+				str += "<td><input type='button' value='删除' onclick='deleteCustomer("
 						+ id
-						+ ")'/><input type='button' value='修改' onclick='modifyEmployee(\""
-						+ name + "\")'/></td>";
+						+ ")'/><input type='button' value='修改' onclick='updateCustomer(\""
+						+ id + "\")'/></td>";
 				str += "</tr>";
 			}
 		} else {
@@ -244,7 +192,7 @@ function result2customer(result) {
 			str += "<td>" + result.commend + "</td>";
 			str += "<td><input type='button' value='删除' onclick='deleteEmployee("
 					+ id
-					+ ")'/><input type='button' value='修改' onclick='modifyEmployee("
+					+ ")'/><input type='button' value='修改' onclick='updateEmployee("
 					+ name + ")'/></td>";
 			str += "</tr>";
 		}
@@ -258,12 +206,11 @@ function result2customer(result) {
 }
 //将Ajax返回值转换成Finance对象
 function result2finance(result) {
-	result = eval("(" + result + ")").message;
 	console.log(result);
 	var str = "";
 	str += "<tr>";
 	str += "<td></td>";
-	str += "<td colspan=2><input type='button' onclick='javascript:document.getElementsByClassName(\"dialog-reginster-employee\")[0].style.display=\"block\"' value='添加'/></td>";
+	str += "<td colspan=2><input type='button' onclick='javascript:document.getElementsByClassName(\"dialog-reginster-finance\")[0].style.display=\"block\"' value='添加'/></td>";
 	str += "<td colspan=2><input type='button' value='删除'/></td>";
 	str += "<td colspan=5><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"employee\")'/></td>";
 	str += "</tr>";
@@ -295,10 +242,10 @@ function result2finance(result) {
 				str += "<td>" + paymentway + "</td>";
 				str += "<td>" + type + "</td>";
 				str += "<td>" + time + "</td>";
-				str += "<td><input type='button' value='删除' onclick='deleteEmployee("
+				str += "<td><input type='button' value='删除' onclick='deleteFinance("
 						+ cid
-						+ ")'/><input type='button' value='修改' onclick='modifyEmployee(\""
-						+ cid + "\")'/></td>";
+						+ "," + eid + ")'/><input type='button' value='修改' onclick='modifyEmployee(\""
+						+ cid + "," + eid + ")'/></td>";
 				str += "</tr>";
 			}
 		} else {
@@ -326,12 +273,11 @@ function result2finance(result) {
 }//将Ajax返回值转换成House对象
 //将Ajax返回值转换成House对象
 function result2house(result) {
-	result = eval("(" + result + ")").message;
 	console.log(result);
 	var str = "";
 	str += "<tr>";
 	str += "<td></td>";
-	str += "<td colspan=2><input type='button' onclick='javascript:document.getElementsByClassName(\"dialog-reginster-employee\")[0].style.display=\"block\"' value='添加'/></td>";
+	str += "<td colspan=2><input type='button' onclick='javascript:document.getElementsByClassName(\"dialog-reginster-house\")[0].style.display=\"block\"' value='添加'/></td>";
 	str += "<td colspan=2><input type='button' value='删除'/></td>";
 	str += "<td colspan=5><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"employee\")'/></td>";
 	str += "</tr>";
@@ -400,6 +346,312 @@ function result2house(result) {
 	return str;
 }
 
+// 添加用户
+function addEmployee() {
+	// 显示表单
+	document.getElementsByClassName("dialog-reginster-employee")[0].style.display="block";
+	var form = document.getElementById("dialog-login-employee");
+	// 清空表单
+	form.reset();
+	form.btn.value = "添加";
+	form.btn.onclick = function(){
+		var name = form.ename.value;
+		var username = form.eusername.value;
+		var gender = form.egender.value;
+		var age = form.eage.value;
+		var phone = form.ephone.value;
+		var department = form.edepartment.value;
+		var position = form.eposition.value;
+		var salary = form.esalary.value;
+		if(!(name&&username&&gender&&age&&phone&&department&&position&&salary)){
+			alert("请将数据填写完整后重新提交！");
+			return;
+		}
+		var values = "&name=" + name + "&username=" + username + "&gender=" + gender + 
+		"&age=" + age + "&phone=" + phone + "&department=" + department + 
+		"&position=" + position + "&salary=" + salary; 
+		MyAjax("employee", "add", values, function(result){
+			var rst = eval("(" + result + ")");
+			if(rst.code == 200) {
+				alert("添加成功");		
+				document.getElementsByClassName("dialog-reginster-employee")[0].style.display="none";
+				changeEmployee();
+			}else {
+				alert("添加失败");
+			}
+			console.log("Employee添加操作:" + result);
+		})
+	}
+}
+// 删除用户
+function deleteEmployee(id) {
+	MyAjax("employee","delete","&id="+id,function(result){
+		var rst = eval("(" + result + ")");
+		if(rst.code == 200) {
+			alert("删除成功!");
+		} else {
+			alert("删除失败!");
+		}
+		console.log("Employee删除"+result);
+		changeEmployee();
+	});
+}
+// 修改用户
+function updateEmployee(id) {
+	// 显示表单
+	document.getElementsByClassName("dialog-reginster-employee")[0].style.display="block";
+	var form = document.getElementById("dialog-login-employee");
+	form.reset();
+	var emp;
+	for(var i=0; i<employees.length; i++){
+		if(employees[i].id == id) {
+			emp = employees[i];
+		}
+	}
+	form.eno.value = emp.id;
+	form.ename.value = emp.name;
+	form.eusername.value = emp.username;
+	form.egender.value = emp.gender;
+	form.eage.value = emp.age;
+	form.ephone.value = emp.phone;
+	form.edepartment.value = emp.department;
+	form.eposition.value = emp.position;
+	form.esalary.value = emp.salary;
+	form.btn.value = "修改";
+	form.btn.onclick = function(){
+		var id = form.eno.value;
+		var name = form.ename.value;
+		var username = form.eusername.value;
+		var gender = form.egender.value;
+		var age = form.eage.value;
+		var phone = form.ephone.value;
+		var department = form.edepartment.value;
+		var position = form.eposition.value;
+		var salary = form.esalary.value;
+		if(!(name&&username&&gender&&age&&phone&&department&&position&&salary)){
+			alert("请将数据填写完整后重新提交！");
+			return;
+		}
+		var values = "&id=" + id + "&name=" + name + "&username=" + username + "&gender=" + gender + 
+		"&age=" + age + "&phone=" + phone + "&department=" + department + 
+		"&position=" + position + "&salary=" + salary; 
+		MyAjax("employee", "update", values, function(result){
+			var rst = eval("(" + result + ")");
+			if(rst.code == 200) {
+				alert("更新成功");
+				document.getElementsByClassName("dialog-reginster-employee")[0].style.display="none";
+				changeEmployee();
+			}else {
+				alert("更新失败");
+			}
+			console.log("Employee更新操作:" + result);
+		})
+	}
+}
+
+
+// 添加顾客
+function addCustomer() {
+	// 显示表单
+	document.getElementsByClassName("dialog-reginster-customer")[0].style.display="block";
+	var form = document.getElementById("dialog-login-customer");
+	// 清空表单
+	form.reset();
+	form.btn.value = "添加";
+	form.btn.onclick = function(){
+		var name = form.cname.value;
+		var address = form.caddress.value;
+		var buyaddress = form.cbuyaddress.value;
+		var phone = form.cphone.value;
+		var idnum = form.cidnum.value;
+		var idstatu = form.cidstatu.value;
+		var wanttype = form.cwanttype.value;
+		var commend = form.ccommend.value;
+		if(!(name&&address&&buyaddress&&phone&&idnum&&idstatu&&wanttype&&commend)) {
+			alert("请将数据填写完整后重新提交！");
+			return;
+		}
+		var values = "&name=" + name + "&address=" + address + "&buyaddress=" + buyaddress +
+				"&phone=" + phone + "&idnum=" + idnum + "&idstatu=" + idstatu + 
+				"&wanttype=" + wanttype + "&commend=" + commend;
+		MyAjax("customer", "add", values, function(result){
+			var rst = eval("(" + result + ")");
+			if(rst.code == 200) {
+				alert("添加成功");		
+				document.getElementsByClassName("dialog-reginster-customer")[0].style.display="none";
+				changeCustomer();
+			}else {
+				alert("添加失败");
+			}
+			console.log("Employee添加操作:" + result);
+		});
+	}
+}
+// 删除顾客
+function deleteCustomer(id) {
+	MyAjax("customer", "delete", "&id="+id, function(result) {
+		var rst = eval("(" + result + ")");
+		if(rst.code == 200) {
+			alert("删除成功");
+		} else {
+			alert("删除失败");
+		}
+		console.log("Customer删除"+result);
+		changeCustomer();
+	});
+}
+// 修改顾客
+function updateCustomer(id) {
+	// 显示表单
+	document.getElementsByClassName("dialog-reginster-customer")[0].style.display="block";
+	var form = document.getElementById("dialog-login-customer");
+	form.reset();
+	var cus;
+	for(var i=0; i<customers.length; i++) {
+		if(customers[i].id == id) {
+			cus = customers[i];
+		}
+	}
+	form.cid.value = cus.id;
+	form.cname.value = cus.name;
+	form.caddress.value = cus.address;
+	form.cbuyaddress.value = cus.buyaddress;
+	form.cphone.value = cus.phone;
+	form.cidnum.value = cus.idnum;
+	form.cidstatu.value = cus.idstatu;
+	form.cwanttype.value = cus.wanttype;
+	form.ccommend.value = cus.commend;
+	form.btn.value = "更新";
+	form.btn.onclick = function() {
+		var id = form.cid.value;
+		var name = form.cname.value;
+		var address = form.caddress.value;
+		var buyaddress = form.cbuyaddress.value;
+		var phone = form.cphone.value;
+		var idnum = form.cidnum.value;
+		var idstatu = form.cidstatu.value;
+		var wanttype = form.cwanttype.value;
+		var commend = form.ccommend.value;
+		if(!(id&&name&&address&&buyaddress&&phone&&idnum&&idstatu&&wanttype&&commend)) {
+			alert("请将数据填写完整后重新提交！");
+			return;
+		}
+		var values = "&id=" + id + "&name=" + name + "&address=" + address + "&buyaddress=" + buyaddress +
+				"&phone=" + phone + "&idnum=" + idnum + "&idstatu=" + idstatu + 
+				"&wanttype=" + wanttype + "&commend=" + commend;
+		MyAjax("customer", "update", values, function(result){
+			var rst = eval("(" + result + ")");
+			if(rst.code == 200) {
+				alert("更新成功");		
+				document.getElementsByClassName("dialog-reginster-customer")[0].style.display="none";
+				changeCustomer();
+			}else {
+				alert("更新失败");
+			}
+			console.log("Employee更新操作:" + result);
+		});
+	}
+}
+
+
+// 添加账单
+function addFinance() {
+	// 显示表单
+	document.getElementsByClassName("dialog-reginster-finance")[0].style.display="block";
+	var form = document.getElementById("dialog-login-finance");
+	// 清空表单
+	form.reset();
+	form.btn.value = "添加";
+	form.btn.onclick = function(){
+		var cid = form.cid.value;
+		var eid = form.eid.value;
+		var price = form.fprice.value;
+		var paymentway = form.fpaymentway.value;
+		var type = form.ftype.value;
+		if(!(cid&&eid&&price&&paymentway&&type)) {
+			alert("请将数据填写完整后重新提交！");
+			return;
+		}
+		var values = "&cid=" + cid + "&eid=" + eid + "&price=" + price +
+				"&paymentway=" + paymentway + "&type=" + type;
+		MyAjax("finance", "add", values, function(result){
+			var rst = eval("(" + result + ")");
+			if(rst.code == 200) {
+				alert("添加成功");		
+				document.getElementsByClassName("dialog-reginster-finance")[0].style.display="none";
+				changeFinance();
+			}else {
+				alert("添加失败");
+			}
+			console.log("Finance添加操作:" + result);
+		});
+	}
+}
+// 删除账单
+// 修改账单
+
+// 添加楼盘
+// 删除楼盘
+// 修改楼盘
+
+//通过名字查询
+function searchByName(entity) {
+	var show_table = document.getElementById("data_table")
+	var name = document.getElementById("searchname").value;
+	var emp;
+	var cus;
+	var rst;
+	switch(entity) {
+	case "employee":
+		for(var i=0; i<employees.length; i++) {
+			if(employees[i].name == name) {
+				emp = employees[i];
+			}
+		}
+		rst = result2employee(emp);
+		break;
+	case "customer":
+		for(var i=0; i<customers.length; i++) {
+			if(customers[i].name == name) {
+				cus = customers[i];
+			}
+		}
+		rst = result2customer(cus);
+		break;
+	}
+	show_table.innerHTML = rst;
+}
+
+//自定义Ajax
+function MyAjax(entity, operate, values, callback) {
+	var service;
+	var operate;
+	switch (entity) {
+		// 若为员工
+		case "employee":
+			service = "EmployeeService";
+			break;
+		// 若为顾客
+		case "customer" :
+			service = "CustomerService";
+			break;
+		// 若为账单
+		case "finance" :
+			service = "FinanceService";
+			break;
+			// 若为楼盘
+		case "house" :
+			service = "HouseService";
+			break;
+	}
+	$.ajax({
+		url : "./" + service + "?operate=" + operate + values,
+		method : "post",
+		success : function(result) {
+			callback(result);
+		}
+	});
+}
 //页面展开/折叠功能
 function ocDetail(detail) {
     var main_left = document.getElementsByClassName("main-left")[0];

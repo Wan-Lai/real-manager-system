@@ -42,42 +42,58 @@
     <div class="dialog-reginster-employee" style="display:none">
         <form id="dialog-login-employee">
             <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-employee")[0].style.display="none"'>x</div>
-            编&emsp;&emsp;号:<input type="text" id="eno" name="no" /><br />
-            姓&emsp;&emsp;名:<input type="text" id="eusername" name="username" /><br />
-            密&emsp;&emsp;码:<input type="password" id="epassword" name="password" /><br />
-            性&emsp;&emsp;别:<input type="radio" id="egender" name="gender" value="man" checked/>男
-            <input type="radio" name="gender" value="woman" />女<br />
-            年&emsp;&emsp;龄:<input type="number" id="eage" name="age" max="100" min="1" /><br />
-            职&emsp;&emsp;位:<input type="text" id="eposition" list="mylist1" name="position" /><br />
-            <datalist id="mylist1" name="position">
-                <option value="0">保洁员</option>
-                <option value="1">前台</option>
-                <option value="2">服务员</option>
-                <option value="3">经理</option>
-            </datalist>
-            电&emsp;&emsp;话:<input id="ephone" type="tel" name="phone" /><br />
-            身份证号:<input type="text" id="eid" name="id" /><br />
-            <input type="button" id="ebtn" onclick="addEmployee()" value="注册" />
+            <sapn>编&emsp;&emsp;号:</sapn><input type="text" name="eno" readonly/><br />
+            <sapn>姓&emsp;&emsp;名:</sapn><input type="text" name="ename" /><br />
+            <sapn>昵&emsp;&emsp;称:</sapn><input type="text" name="eusername"><br />      
+            <sapn>性&emsp;&emsp;别:</sapn><input type="radio" name="egender" value="man" checked/>男
+            <input type="radio" name="egender" value="woman" />女<br />
+            <sapn>年&emsp;&emsp;龄:</sapn><input type="number" name="eage" max="100" min="1" /><br />
+            <sapn>电&emsp;&emsp;话:</sapn><input type="tel" name="ephone" /><br />
+            <sapn>部&emsp;&emsp;门:</sapn><input type="text" name="edepartment" /><br />
+            <sapn>职&emsp;&emsp;位:</sapn><input type="text" list="mylist1" name="eposition" /><br />
+			<datalist id="mylist1" name="position">
+				<option value="0">保洁员</option>
+				<option value="1">前台</option>
+				<option value="2">服务员</option>
+				<option value="3">经理</option>
+			</datalist>
+			薪&emsp;&emsp;水:<input type="number" name="esalary" /><br />
+            <input type="button" name="btn" value="注册" />
         </form>
     </div>
-    <div class="dialog-reginster-guest" style="display:none">
-        <form id="dialog-login-guest">
-            <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-guest")[0].style.display="none"'>x</div>
-            编&emsp;&emsp;号:<input type="text" id="gno" name="no" /><br />
-            姓&emsp;&emsp;名:<input type="text" id="gusername" name="username" /><br />
-            性&emsp;&emsp;别:<input type="radio" id="ggender" name="gender" value="man" checked />男
-            <input type="radio" name="gender" value="woman" />女<br />
-            年&emsp;&emsp;龄:<input type="number" id="gage" name="age" max="100" min="1" /><br />
-              电&emsp;&emsp;话:<input id="gphone" type="tel" name="phone" /><br />
-            身份证号:<input type="text" id="gid" name="id" /><br />
-            <input type="button" id="gbtn" onclick="addGuest()" value="添加" />
+    
+    <div class="dialog-reginster-customer" style="display:none">
+        <form id="dialog-login-customer">
+            <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-customer")[0].style.display="none"'>x</div>
+            <sapn>编&emsp;&emsp;号:</sapn><input type="text" name="cid" readonly/><br />
+            <sapn>姓&emsp;&emsp;名:</sapn><input type="text" name="cname" /><br />
+            <sapn>地&emsp;&emsp;址:</sapn><input type="text" name="caddress"><br />      
+            <sapn>购买地址:</sapn><input type="text" name="cbuyaddress" />
+            <sapn>电&emsp;&emsp;话:</sapn><input type="tel" name="cphone" /><br />
+            <sapn>身份证号:</sapn><input type="text" name="cidnum" /><br />
+            <sapn>身份证状态:</sapn><input type="text" name="cidstatu" /><br />
+			<sapn>希望类型:</sapn><input type="text" name="cwanttype" /><br />
+			<sapn>备注:</sapn><input type="text" name="ccommend" /><br />
+            <input type="button" name="btn" value="注册" />
+        </form>
+    </div>
+    
+    <div class="dialog-reginster-finance" style="display:none">
+        <form id="dialog-login-finance">
+            <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-finance")[0].style.display="none"'>x</div>
+            <span>顾客编号:</span><input type="text" name="cid"/><br />
+            <span>员工编号:</span><input type="text" name="eid"/><br />
+            <span>账单金额:</span><input type="radio" name="fprice"/><br />
+            <span>付款方式:</span><input type="radio" name="fpaymentway"/><br />
+            <span>财务类型:</span><input type="number" name="ftype"/><br />
+            <input type="button" id="btn" >
         </form>
     </div>
 
-    <div class="dialog-reginster-room" style="display:none">
-        <form id="dialog-login-room">
+    <div class="dialog-reginster-customer" style="display:none">
+        <form id="dialog-login-customer">
             <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-room")[0].style.display="none"'>x</div>
-            编号:<input type="text" id="rno" name="no" /><br />
+            <sapn>编号:</sapn><input type="text" id="rno" name="no" /><br />
             价格:<input type="text" id="rprice" name="price" /><br />
             状态:<input type="text" id="rstatu" list="mylist2" name="statu" /><br />
             <datalist id="mylist2">
@@ -98,7 +114,7 @@
         </form>
     </div>
 
-    <div class="dialog-reginster-object" style="display:none">
+    <div class="dialog-reginster-house" style="display:none">
         <form id="dialog-login-object">
             <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-object")[0].style.display="none"'>x</div>
             编号:<input type="text" id="ono" name="no" /><br />

@@ -1,4 +1,4 @@
-﻿      * {
+      * {
         padding: 0;
         margin: 0;
         transition: all .3s;
@@ -153,8 +153,8 @@
     }
 
     .dialog-reginster-employee, 
-    .dialog-reginster-guest,
-    .dialog-reginster-room,
+    .dialog-reginster-customer,
+    .dialog-reginster-finance,
     .dialog-reginster-object{
         height: 100%;
         width: 100%;
@@ -162,25 +162,24 @@
         position: absolute;
         top:0;
         left:0;
-        text-align:center;
     }
 
     .dialog-reginster-employee form, 
-    .dialog-reginster-guest form,
-    .dialog-reginster-room form, 
+    .dialog-reginster-customer form,
+    .dialog-reginster-finance form, 
     .dialog-reginster-object form{
-        height:300px;
-        width: 300px;
+        height:330px;
         margin: 100px auto;
         border-radius: 30px;
         color:white;
         background-color:black;
+        text-align: center;
     }
 
 
     .dialog-reginster-employee input,
-    .dialog-reginster-guest input,
-    .dialog-reginster-room input,
+    .dialog-reginster-customer input,
+    .dialog-reginster-finance input,
     .dialog-reginster-object input {
         height: 20px;
         margin: 5px 0;
