@@ -32,6 +32,6 @@ public class Result {
 
 	@Override
 	public String toString() {
-		return "{code=" + code + ", message=" + message + "}";
+		return "{code:" + code + ", message:" + message + "}";
 	}
 }

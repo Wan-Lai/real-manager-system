@@ -10,7 +10,7 @@ public class test {
 	public static void main(String[] args) {
 		try {
 			List<Employee> emps = EmployeeDao.queryAllEmployee();
-			for(Employee emp : emps) {
+			for (Employee emp : emps) {
 				System.out.println(emp.getName());
 			}
 		} catch (Exception e) {
