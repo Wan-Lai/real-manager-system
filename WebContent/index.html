@@ -42,14 +42,14 @@
     <div class="dialog-reginster-employee" style="display:none">
         <form id="dialog-login-employee">
             <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-employee")[0].style.display="none"'>x</div>
-            <sapn>编&emsp;&emsp;号:</sapn><input type="text" name="eno" readonly/><br />
+            <sapn>编&emsp;&emsp;号:</sapn><input type="text" name="eno" placeholder="系统生成,无法添加" readonly/><br />
             <sapn>姓&emsp;&emsp;名:</sapn><input type="text" name="ename" /><br />
             <sapn>昵&emsp;&emsp;称:</sapn><input type="text" name="eusername"><br />      
             <sapn>性&emsp;&emsp;别:</sapn><input type="radio" name="egender" value="man" checked/>男
             <input type="radio" name="egender" value="woman" />女<br />
             <sapn>年&emsp;&emsp;龄:</sapn><input type="number" name="eage" max="100" min="1" /><br />
             <sapn>电&emsp;&emsp;话:</sapn><input type="tel" name="ephone" /><br />
-            <sapn>部&emsp;&emsp;门:</sapn><input type="text" name="edepartment" /><br />
+            <sapn>部&emsp;&emsp;门:</sapn><input type="text" name="edapartment" /><br />
             <sapn>职&emsp;&emsp;位:</sapn><input type="text" list="mylist1" name="eposition" /><br />
 			<datalist id="mylist1" name="position">
 				<option value="0">保洁员</option>
@@ -65,10 +65,10 @@
     <div class="dialog-reginster-customer" style="display:none">
         <form id="dialog-login-customer">
             <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-customer")[0].style.display="none"'>x</div>
-            <sapn>编&emsp;&emsp;号:</sapn><input type="text" name="cid" readonly/><br />
+            <sapn>编&emsp;&emsp;号:</sapn><input type="text" name="cid" placeholder="系统生成,无法添加" readonly/><br />
             <sapn>姓&emsp;&emsp;名:</sapn><input type="text" name="cname" /><br />
             <sapn>地&emsp;&emsp;址:</sapn><input type="text" name="caddress"><br />      
-            <sapn>购买地址:</sapn><input type="text" name="cbuyaddress" />
+            <sapn>购买地址:</sapn><input type="text" name="cbuyaddress" /><br />
             <sapn>电&emsp;&emsp;话:</sapn><input type="tel" name="cphone" /><br />
             <sapn>身份证号:</sapn><input type="text" name="cidnum" /><br />
             <sapn>身份证状态:</sapn><input type="text" name="cidstatu" /><br />
@@ -81,47 +81,27 @@
     <div class="dialog-reginster-finance" style="display:none">
         <form id="dialog-login-finance">
             <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-finance")[0].style.display="none"'>x</div>
-            <span>顾客编号:</span><input type="text" name="cid"/><br />
+            <span>顾客编号:</span><input type="text" name="cid" /><br />
             <span>员工编号:</span><input type="text" name="eid"/><br />
-            <span>账单金额:</span><input type="radio" name="fprice"/><br />
-            <span>付款方式:</span><input type="radio" name="fpaymentway"/><br />
+            <span>账单金额:</span><input type="text" name="fprice"/><br />
+            <span>付款方式:</span><input type="text" name="fpaymentway"/><br />
             <span>财务类型:</span><input type="number" name="ftype"/><br />
-            <input type="button" id="btn" >
-        </form>
-    </div>
-
-    <div class="dialog-reginster-customer" style="display:none">
-        <form id="dialog-login-customer">
-            <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-room")[0].style.display="none"'>x</div>
-            <sapn>编号:</sapn><input type="text" id="rno" name="no" /><br />
-            价格:<input type="text" id="rprice" name="price" /><br />
-            状态:<input type="text" id="rstatu" list="mylist2" name="statu" /><br />
-            <datalist id="mylist2">
-                <option value="0">空闲</option>
-                <option value="1">已住人</option>
-                <option value="2">预约</option>
-                <option value="3">维修</option>
-            </datalist>
-            类型:<input type="text" id="rtype" list="mylist3" name="type" />
-            <datalist id="mylist3">
-                <option value="0">单人房</option>
-                <option value="1">标准房</option>
-                <option value="2">豪华房</option>
-                <option value="3">商务房</option>
-            </datalist>
-            <br />
-            <input type="button" id="rbtn" onclick="addRoom()" value="添加" />
+            <input type="button" name="btn" value="提交">
         </form>
     </div>
 
     <div class="dialog-reginster-house" style="display:none">
-        <form id="dialog-login-object">
-            <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-object")[0].style.display="none"'>x</div>
-            编号:<input type="text" id="ono" name="no" /><br />
-            名称:<input type="text" id="oname" name="name" /><br />
-            数量:<input type="text" id="onumber" name="number" /><br />
-            价格:<input type="text" id="oprice" name="price" /><br />
-            <input type="button"  id="obtn" onclick="addObject()" value="添加" />
+        <form id="dialog-login-house">
+            <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-house")[0].style.display="none"'>x</div>
+            <span>楼盘编号:</span><input type="text" name="hid" placeholder="系统生成,无法添加" readonly/><br />
+           	<span>楼盘名称:</span><input type="text" name="hname" /><br />
+            <span>楼盘号码:</span><input type="text" name="hnumber" /><br />
+           	<span>楼盘类型:</span><input type="text" name="htype" /><br />
+      		<span>楼盘价格:</span><input type="text" name="hprice" /><br />
+      		<span>楼盘面积:</span><input type="text" name="herea" /><br />
+      		<span>操作人员:</span><input type="text" name="eid" /><br />
+      		<span>楼盘时间:</span><input type="text" name="htime" placeholder="例:2022/6/20 12:22"/><br />
+        	<input type="button" name="btn" value="添加" />
         </form>
     </div>
 </body>

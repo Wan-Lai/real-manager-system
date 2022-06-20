@@ -155,7 +155,7 @@
     .dialog-reginster-employee, 
     .dialog-reginster-customer,
     .dialog-reginster-finance,
-    .dialog-reginster-object{
+    .dialog-reginster-house{
         height: 100%;
         width: 100%;
         background-color: rgba(0,0,0,0.4);
@@ -167,8 +167,8 @@
     .dialog-reginster-employee form, 
     .dialog-reginster-customer form,
     .dialog-reginster-finance form, 
-    .dialog-reginster-object form{
-        height:330px;
+    .dialog-reginster-house form{
+    	width: 300px;
         margin: 100px auto;
         border-radius: 30px;
         color:white;
@@ -180,7 +180,7 @@
     .dialog-reginster-employee input,
     .dialog-reginster-customer input,
     .dialog-reginster-finance input,
-    .dialog-reginster-object input {
+    .dialog-reginster-house input {
         height: 20px;
         margin: 5px 0;
         font-size: 18px;

@@ -1,5 +1,7 @@
 ﻿var employees;
 var customers;
+var finances;
+var houses;
 
 window.onload = function() {
 	// 默认查看员工
@@ -49,7 +51,7 @@ function result2employee(result) {
 	str += "<td></td>";
 	str += "<td colspan=2><input type='button' onclick='addEmployee()' value='添加'/></td>";
 	str += "<td colspan=2><input type='button' value='删除'/></td>";
-	str += "<td colspan=5><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"employee\")'/></td>";
+	str += "<td colspan=6><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"employee\")'/></td>";
 	str += "</tr>";
 	str += "<tr>";
 	str += "<th><input type='checkbox' name='checkname' id='fcheckbox' onclick='checkAll(this)'/></th>";
@@ -88,8 +90,7 @@ function result2employee(result) {
 				str += "<td>" + department + "</td>";
 				str += "<td>" + position + "</td>";
 				str += "<td>" + salary + "</td>";
-				str += "<td><input type='button' value='删除' onclick='deleteEmployee("
-						+ id
+				str += "<td><input type='button' value='删除' onclick='deleteEmployee("+ id
 						+ ")'/><input type='button' value='修改' onclick='updateEmployee(\""
 						+ id + "\")'/></td>";
 				str += "</tr>";
@@ -106,16 +107,15 @@ function result2employee(result) {
 			str += "<td>" + result.department + "</td>";
 			str += "<td>" + result.position + "</td>";
 			str += "<td>" + result.salary + "</td>";
-			str += "<td><input type='button' value='删除' onclick='deleteEmployee("
-					+ id
-					+ ")'/><input type='button' value='修改' onclick='modifyEmployee("
-					+ name + ")'/></td>";
+			str += "<td><input type='button' value='删除' onclick='deleteEmployee("+ result
+			+ ")'/><input type='button' value='修改' onclick='updateEmployee(\""
+			+ result.id + "\")'/></td>";
 			str += "</tr>";
 		}
 		str += "<tr>";
 		str += "<td colspan=1></td>";
-		str += "<td colspan=9><ul>";
-		str += "<td></td>";
+		str += "<td colspan=10><ul>";
+		str += "<td colspan=1></td>";
 		str += "</tr>";
 	}
 	return str;
@@ -129,7 +129,7 @@ function result2customer(result) {
 	str += "<td></td>";
 	str += "<td colspan=2><input type='button' onclick='addCustomer()' value='添加'/></td>";
 	str += "<td colspan=2><input type='button' value='删除'/></td>";
-	str += "<td colspan=5><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"customer\")'/></td>";
+	str += "<td colspan=7><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"customer\")'/></td>";
 	str += "</tr>";
 	str += "<tr>";
 	str += "<th><input type='checkbox' name='checkname' id='fcheckbox' onclick='checkAll(this)'/></th>";
@@ -198,21 +198,22 @@ function result2customer(result) {
 		}
 		str += "<tr>";
 		str += "<td colspan=1></td>";
-		str += "<td colspan=9><ul>";
-		str += "<td></td>";
+		str += "<td colspan=11><ul>";
+		str += "<td colspan=1></td>";
 		str += "</tr>";
 	}
 	return str;
 }
 //将Ajax返回值转换成Finance对象
 function result2finance(result) {
-	console.log(result);
+//	console.log(result);
+	finances = result;
 	var str = "";
 	str += "<tr>";
 	str += "<td></td>";
-	str += "<td colspan=2><input type='button' onclick='javascript:document.getElementsByClassName(\"dialog-reginster-finance\")[0].style.display=\"block\"' value='添加'/></td>";
+	str += "<td colspan=2><input type='button' onclick='addFinance()' value='添加'/></td>";
 	str += "<td colspan=2><input type='button' value='删除'/></td>";
-	str += "<td colspan=5><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"employee\")'/></td>";
+	str += "<td colspan=5><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"finance\")'/></td>";
 	str += "</tr>";
 	str += "<tr>";
 	str += "<th><input type='checkbox' name='checkname' id='fcheckbox' onclick='checkAll(this)'/></th>";
@@ -242,9 +243,7 @@ function result2finance(result) {
 				str += "<td>" + paymentway + "</td>";
 				str += "<td>" + type + "</td>";
 				str += "<td>" + time + "</td>";
-				str += "<td><input type='button' value='删除' onclick='deleteFinance("
-						+ cid
-						+ "," + eid + ")'/><input type='button' value='修改' onclick='modifyEmployee(\""
+				str += "<td><input type='button' value='删除' onclick='deleteFinance("+ cid + "," + eid + ")'/><input type='button' value='修改' onclick='updateFinance("
 						+ cid + "," + eid + ")'/></td>";
 				str += "</tr>";
 			}
@@ -257,10 +256,8 @@ function result2finance(result) {
 			str += "<td>" + result.paymentway + "</td>";
 			str += "<td>" + result.type + "</td>";
 			str += "<td>" + result.time + "</td>";
-			str += "<td><input type='button' value='删除' onclick='deleteEmployee("
-					+ id
-					+ ")'/><input type='button' value='修改' onclick='modifyEmployee("
-					+ name + ")'/></td>";
+			str += "<td><input type='button' value='删除' onclick='deleteFinance("+ result.cid + "," + result.eid + ")'/><input type='button' value='修改' onclick='updateFinance("
+				+ result.cid + "," + result.eid + ")'/></td>";
 			str += "</tr>";
 		}
 		str += "<tr>";
@@ -273,13 +270,14 @@ function result2finance(result) {
 }//将Ajax返回值转换成House对象
 //将Ajax返回值转换成House对象
 function result2house(result) {
-	console.log(result);
+//	console.log(result);
+	houses = result;
 	var str = "";
 	str += "<tr>";
 	str += "<td></td>";
-	str += "<td colspan=2><input type='button' onclick='javascript:document.getElementsByClassName(\"dialog-reginster-house\")[0].style.display=\"block\"' value='添加'/></td>";
+	str += "<td colspan=2><input type='button' onclick='addHouse()' value='添加'/></td>";
 	str += "<td colspan=2><input type='button' value='删除'/></td>";
-	str += "<td colspan=5><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"employee\")'/></td>";
+	str += "<td colspan=5><input type='text' placeholder='请输入姓名' id='searchname'/><input type='button' value='搜索' onclick='searchByName(\"house\")'/></td>";
 	str += "</tr>";
 	str += "<tr>";
 	str += "<th><input type='checkbox' name='checkname' id='fcheckbox' onclick='checkAll(this)'/></th>";
@@ -307,6 +305,7 @@ function result2house(result) {
 				str += "<tr>";
 				str += "<td><input type='checkbox' name='checkname' class='scheckbox' lang='"
 						+ id + "'/></td>"
+				str += "<td>" + id + "</td>";
 				str += "<td>" + name + "</td>";
 				str += "<td>" + number + "</td>";
 				str += "<td>" + type + "</td>";
@@ -314,10 +313,9 @@ function result2house(result) {
 				str += "<td>" + erea + "</td>";
 				str += "<td>" + eid + "</td>";
 				str += "<td>" + time + "</td>";
-				str += "<td><input type='button' value='删除' onclick='deleteEmployee("
-						+ id
-						+ ")'/><input type='button' value='修改' onclick='modifyEmployee(\""
-						+ name + "\")'/></td>";
+				str += "<td><input type='button' value='删除' onclick='deleteHouse("+ id
+						+ ")'/><input type='button' value='修改' onclick='updateHouse(\""
+						+ id + "\")'/></td>";
 				str += "</tr>";
 			}
 		} else {
@@ -331,16 +329,15 @@ function result2house(result) {
 			str += "<td>" + result.erea + "</td>";
 			str += "<td>" + result.eid + "</td>";
 			str += "<td>" + result.time + "</td>";
-			str += "<td><input type='button' value='删除' onclick='deleteEmployee("
-					+ id
-					+ ")'/><input type='button' value='修改' onclick='modifyEmployee("
-					+ name + ")'/></td>";
+			str += "<td><input type='button' value='删除' onclick='deleteHouse("+ result.id
+			+ ")'/><input type='button' value='修改' onclick='updateHouse(\""
+			+ result.id + "\")'/></td>";
 			str += "</tr>";
 		}
 		str += "<tr>";
 		str += "<td colspan=1></td>";
 		str += "<td colspan=9><ul>";
-		str += "<td></td>";
+		str += "<td colspan=2></td>";
 		str += "</tr>";
 	}
 	return str;
@@ -408,13 +405,14 @@ function updateEmployee(id) {
 			emp = employees[i];
 		}
 	}
+	console.log(emp);
 	form.eno.value = emp.id;
 	form.ename.value = emp.name;
 	form.eusername.value = emp.username;
 	form.egender.value = emp.gender;
 	form.eage.value = emp.age;
 	form.ephone.value = emp.phone;
-	form.edepartment.value = emp.department;
+	form.edapartment.value = emp.dapartment;
 	form.eposition.value = emp.position;
 	form.esalary.value = emp.salary;
 	form.btn.value = "修改";
@@ -539,6 +537,7 @@ function updateCustomer(id) {
 		var values = "&id=" + id + "&name=" + name + "&address=" + address + "&buyaddress=" + buyaddress +
 				"&phone=" + phone + "&idnum=" + idnum + "&idstatu=" + idstatu + 
 				"&wanttype=" + wanttype + "&commend=" + commend;
+		console.log(values);
 		MyAjax("customer", "update", values, function(result){
 			var rst = eval("(" + result + ")");
 			if(rst.code == 200) {
@@ -561,6 +560,7 @@ function addFinance() {
 	var form = document.getElementById("dialog-login-finance");
 	// 清空表单
 	form.reset();
+	console.log(form);
 	form.btn.value = "添加";
 	form.btn.onclick = function(){
 		var cid = form.cid.value;
@@ -588,11 +588,164 @@ function addFinance() {
 	}
 }
 // 删除账单
+function deleteFinance(cid, eid) {
+	MyAjax("finance", "delete", "&cid="+cid+"&eid="+eid, function(result) {
+		result = eval("(" + result + ")");
+		if(result.code == 200) {
+			alert("删除成功!");
+			changeFinance();
+		} else {
+			alert("删除失败!");
+		}
+		console.log("Finance删除操作:" + result);
+	});
+}
 // 修改账单
+function updateFinance(cid, eid) {
+	// 显示表单
+	document.getElementsByClassName("dialog-reginster-finance")[0].style.display="block";
+	var form = document.getElementById("dialog-login-finance");
+	// 清空表单
+	form.reset();
+	var fin;
+	for(var i=0; i<finances.length; i++) {
+		if((finances[i].cid == cid)&&(finances[i].eid == eid)) {
+			fin = finances[i];
+		}
+	}
+	form.cid.value = fin.cid;
+	form.eid.value = fin.eid;
+	form.fprice.value = fin.price;
+	form.fpaymentway.value = fin.paymentway;
+	form.ftype.value = fin.type;
+	form.btn.value = "修改";
+	form.btn.onclick = function() {
+		var cid = form.cid.value;
+		var eid = form.eid.value;
+		var price = form.fprice.value;
+		var paymentway = form.fpaymentway.value;
+		var type = form.ftype.value;
+		if(!(cid&&eid&&price&&paymentway&&type)) {
+			alert("请将数据填写完整后重新提交！");
+			return;
+		}
+		var values = "&cid=" + cid + "&eid=" + eid + "&price=" + price +
+				"&paymentway=" + paymentway + "&type=" + type;
+		MyAjax("finance", "update", values, function(result){
+			result = eval("(" + result + ")");
+			if(result.code == 200) {
+				alert("修改成功！");
+				document.getElementsByClassName("dialog-reginster-finance")[0].style.display="none";
+				changeFinance();
+			} else {
+				alert("修改失败！");
+			}
+			console.log("Finance修改操作:" + result);
+		});
+	}
+}
+
 
 // 添加楼盘
+function addHouse() {
+	// 显示表单
+	document.getElementsByClassName("dialog-reginster-house")[0].style.display="block";
+	var form = document.getElementById("dialog-login-house");
+	// 清空表单
+	form.reset();
+	form.btn.value = "添加";
+	form.btn.onclick = function(){
+		var name = form.hname.value;
+		var number = form.hnumber.value;
+		var type = form.htype.value;
+		var price = form.hprice.value;
+		var erea = form.herea.value;
+		var eid = form.eid.value;
+		var time = form.htime.value;
+		if(!(name&&number&&type&&price&&erea&&eid&&time)){
+			alert("请将数据填写完整后重新提交！");
+			return;
+		}
+		var values = "&name=" + name + "&number=" + number + "&type=" + type + 
+		"&price=" + price + "&erea=" + erea + "&eid=" + eid + "&time=" + time; 
+		console.log(values);
+		MyAjax("house", "add", values, function(result){
+			var rst = eval("(" + result + ")");
+			if(rst.code == 200) {
+				alert("添加成功");		
+				document.getElementsByClassName("dialog-reginster-house")[0].style.display="none";
+				changeHouse();
+			}else {
+				alert("添加失败");
+			}
+			console.log("House添加操作:" + result);
+		})
+	}
+}
 // 删除楼盘
-// 修改楼盘
+function deleteHouse(id) {
+MyAjax("house", "delete", "&id="+id, function(result) {
+	result = eval("(" + result + ")");
+	if(result.code == 200) {
+		alert("删除成功!");
+		changeFinance();
+	} else {
+		alert("删除失败!");
+	}
+	console.log("House删除操作:" + result);
+});
+}
+//修改楼盘
+function updateHouse(id) {
+	// 显示表单
+	document.getElementsByClassName("dialog-reginster-house")[0].style.display="block";
+	var form = document.getElementById("dialog-login-house");
+	// 清空表单
+	form.reset();
+	var hou;
+	for(var i=0; i<houses.length; i++) {
+		if(houses[i].id == id) {
+			hou = houses[i];
+		}
+	}
+	form.hid.value = hou.id;
+	form.hname.value = hou.name;
+	form.hnumber.value = hou.number;
+	form.htype.value = hou.type;
+	form.hprice.value = hou.price;
+	form.herea.value = hou.erea;
+	form.eid.value = hou.eid;
+	form.htime.value = hou.time;
+	form.btn.value = "修改";
+	form.btn.onclick = function() {
+		var id = form.hid.value;
+		var name = form.hname.value;
+		var number = form.hnumber.value;
+		var type = form.htype.value;
+		var price = form.hprice.value;
+		var erea = form.herea.value;
+		var eid = form.eid.value;
+		var time = form.htime.value;
+		if(!(name&&number&&type&&price&&erea&&eid&&time)){
+			alert("请将数据填写完整后重新提交！");
+			return;
+		}
+		var values = "&id=" + id + "&name=" + name + "&number=" + number + "&type=" + type + 
+		"&price=" + price + "&erea=" + erea + "&eid=" + eid + "&time=" + time; 
+		MyAjax("house", "update", values, function(result){
+			var rst = eval("(" + result + ")");
+			if(rst.code == 200) {
+				alert("修改成功");		
+				document.getElementsByClassName("dialog-reginster-house")[0].style.display="none";
+				changeHouse();
+			} else {
+				alert("修改失败！");
+			}
+			console.log("Finance修改操作:" + result);
+		});
+	}
+}
+
 
 //通过名字查询
 function searchByName(entity) {
@@ -600,12 +753,15 @@ function searchByName(entity) {
 	var name = document.getElementById("searchname").value;
 	var emp;
 	var cus;
+	var fin;
+	var hou;
 	var rst;
 	switch(entity) {
 	case "employee":
 		for(var i=0; i<employees.length; i++) {
 			if(employees[i].name == name) {
 				emp = employees[i];
+				break;
 			}
 		}
 		rst = result2employee(emp);
@@ -614,10 +770,29 @@ function searchByName(entity) {
 		for(var i=0; i<customers.length; i++) {
 			if(customers[i].name == name) {
 				cus = customers[i];
+				break;
 			}
 		}
 		rst = result2customer(cus);
 		break;
+	case "finance":
+		for(var i=0; i<finances.length; i++) {
+			if(finances[i].cid == name) {
+				fin = finances[i];
+				break;
+			}
+		}
+		rst = result2finance(fin);
+		break;	
+	case "house":
+		for(var i=0; i<houses.length; i++) {
+			if(houses[i].name == name) {
+				hou = houses[i];
+				break;
+			}
+		}
+		rst = result2house(hou);
+		break;	
 	}
 	show_table.innerHTML = rst;
 }
