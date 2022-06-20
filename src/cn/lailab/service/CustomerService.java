@@ -59,12 +59,11 @@ public class CustomerService extends HttpServlet {
 		// Ôö¼Ó²Ù×÷
 		case "add":
 			name = request.getParameter("name");
-			buyAddress = request.getParameter("buyAddress");
+			buyAddress = request.getParameter("buyaddress");
 			address = request.getParameter("address");
 			phone = request.getParameter("phone");
 			idnum = request.getParameter("idnum");
 			idstatu = request.getParameter("idstatu");
-			time = request.getParameter("time");
 			wanttype = request.getParameter("wanttype");
 			commend = request.getParameter("commend");
 			Customer cus1 = new Customer();
@@ -74,7 +73,6 @@ public class CustomerService extends HttpServlet {
 			cus1.setPhone(phone);
 			cus1.setIdnum(idnum);
 			cus1.setIdstatu(idstatu);
-			cus1.setTime(time);
 			cus1.setWanttype(wanttype);
 			cus1.setCommend(commend);
 			try {

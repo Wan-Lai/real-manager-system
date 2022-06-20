@@ -11,10 +11,10 @@ public class CustomerDao {
 
 	// Ôö¼Ó²Ù×÷
 	public static boolean addCustomer(Customer cus) throws Exception {
-		String sql = "INSERT INTO customer(c_name, c_buy_address, c_address, c_phone, c_id_num, c_id_statu, c_time, c_want_type, c_commend)"
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO customer(c_name, c_buy_address, c_address, c_phone, c_id_num, c_id_statu, c_want_type, c_commend)"
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
 		int rst = sqlHelper.updateByPstmt(sql, cus.getName(), cus.getBuyaddress(), cus.getAddress(), cus.getPhone(),
-				cus.getIdnum(), cus.getIdstatu(), cus.getTime(), cus.getWanttype(), cus.getCommend());
+				cus.getIdnum(), cus.getIdstatu(), cus.getWanttype(), cus.getCommend());
 		return rst == 1;
 	}
 
