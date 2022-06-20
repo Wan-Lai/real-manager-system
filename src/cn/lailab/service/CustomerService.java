@@ -102,7 +102,7 @@ public class CustomerService extends HttpServlet {
 		case "update":
 			id = Integer.parseInt(request.getParameter("id"));
 			name = request.getParameter("name");
-			buyAddress = request.getParameter("buyAddress");
+			buyAddress = request.getParameter("buyaddress");
 			address = request.getParameter("address");
 			phone = request.getParameter("phone");
 			idnum = request.getParameter("idnum");
