@@ -144,6 +144,7 @@
         border:1px solid gray;
         border-radius:5px;
         font-size: 18px;
+        padding-left: 10px;
     }
 
     .main-right td input[type="button"] {
