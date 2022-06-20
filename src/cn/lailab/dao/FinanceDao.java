@@ -11,10 +11,10 @@ public class FinanceDao {
 
 	// Ôö¼Ó²Ù×÷
 	public static boolean addFinance(Finance fin) throws Exception {
-		String sql = "INSERT INTO finance(c_id, e_id, c_price, c_payment_way, c_type, c_time)"
-				+ "VALUES(?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO finance(c_id, e_id, c_price, c_payment_way, c_type)"
+				+ "VALUES(?, ?, ?, ?, ?)";
 		int rst = sqlHelper.updateByPstmt(sql, fin.getCid(), fin.getEid(), fin.getPrice(), fin.getPaymentway(),
-				fin.getType(), fin.getTime());
+				fin.getType());
 		return rst == 1;
 	}
 
