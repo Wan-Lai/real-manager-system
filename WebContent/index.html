@@ -1,0 +1,112 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/index.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="border">
+            <label>楼盘管理系统</label>
+            <label>欢迎<b id="cookie_username"></b>,这是你的第二个<b>家</b></label>
+            <a href="/login.html">注销账号</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="detail" onclick="ocDetail(this)">
+            <p id="detail-flag"><</p>
+        </div>
+        <div class="main-left">
+            <ul>
+                <li class="list-1">
+                    <label onclick="changeEmployee()">员工管理</label>
+                </li>
+                <li class="list-1">
+                    <label onclick="changeCustomer()">顾客管理</label>
+                </li>
+                <li class="list-1">
+                    <label onclick="changeFinance()">财务管理</label>
+                </li>
+                <li class="list-1">
+                    <label onclick="changeHouse()">楼盘管理</label>
+                </li>
+            </ul>
+        </div>
+        <div class="main-right">
+            <table id="data_table">
+            </table>
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+    <div class="dialog-reginster-employee" style="display:none">
+        <form id="dialog-login-employee">
+            <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-employee")[0].style.display="none"'>x</div>
+            编&emsp;&emsp;号:<input type="text" id="eno" name="no" /><br />
+            姓&emsp;&emsp;名:<input type="text" id="eusername" name="username" /><br />
+            密&emsp;&emsp;码:<input type="password" id="epassword" name="password" /><br />
+            性&emsp;&emsp;别:<input type="radio" id="egender" name="gender" value="man" checked/>男
+            <input type="radio" name="gender" value="woman" />女<br />
+            年&emsp;&emsp;龄:<input type="number" id="eage" name="age" max="100" min="1" /><br />
+            职&emsp;&emsp;位:<input type="text" id="eposition" list="mylist1" name="position" /><br />
+            <datalist id="mylist1" name="position">
+                <option value="0">保洁员</option>
+                <option value="1">前台</option>
+                <option value="2">服务员</option>
+                <option value="3">经理</option>
+            </datalist>
+            电&emsp;&emsp;话:<input id="ephone" type="tel" name="phone" /><br />
+            身份证号:<input type="text" id="eid" name="id" /><br />
+            <input type="button" id="ebtn" onclick="addEmployee()" value="注册" />
+        </form>
+    </div>
+    <div class="dialog-reginster-guest" style="display:none">
+        <form id="dialog-login-guest">
+            <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-guest")[0].style.display="none"'>x</div>
+            编&emsp;&emsp;号:<input type="text" id="gno" name="no" /><br />
+            姓&emsp;&emsp;名:<input type="text" id="gusername" name="username" /><br />
+            性&emsp;&emsp;别:<input type="radio" id="ggender" name="gender" value="man" checked />男
+            <input type="radio" name="gender" value="woman" />女<br />
+            年&emsp;&emsp;龄:<input type="number" id="gage" name="age" max="100" min="1" /><br />
+              电&emsp;&emsp;话:<input id="gphone" type="tel" name="phone" /><br />
+            身份证号:<input type="text" id="gid" name="id" /><br />
+            <input type="button" id="gbtn" onclick="addGuest()" value="添加" />
+        </form>
+    </div>
+
+    <div class="dialog-reginster-room" style="display:none">
+        <form id="dialog-login-room">
+            <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-room")[0].style.display="none"'>x</div>
+            编号:<input type="text" id="rno" name="no" /><br />
+            价格:<input type="text" id="rprice" name="price" /><br />
+            状态:<input type="text" id="rstatu" list="mylist2" name="statu" /><br />
+            <datalist id="mylist2">
+                <option value="0">空闲</option>
+                <option value="1">已住人</option>
+                <option value="2">预约</option>
+                <option value="3">维修</option>
+            </datalist>
+            类型:<input type="text" id="rtype" list="mylist3" name="type" />
+            <datalist id="mylist3">
+                <option value="0">单人房</option>
+                <option value="1">标准房</option>
+                <option value="2">豪华房</option>
+                <option value="3">商务房</option>
+            </datalist>
+            <br />
+            <input type="button" id="rbtn" onclick="addRoom()" value="添加" />
+        </form>
+    </div>
+
+    <div class="dialog-reginster-object" style="display:none">
+        <form id="dialog-login-object">
+            <div style="height:20px;width:20px;color:white;margin-top:15px;margin-left:10px;" onclick='javascript:document.getElementsByClassName("dialog-reginster-object")[0].style.display="none"'>x</div>
+            编号:<input type="text" id="ono" name="no" /><br />
+            名称:<input type="text" id="oname" name="name" /><br />
+            数量:<input type="text" id="onumber" name="number" /><br />
+            价格:<input type="text" id="oprice" name="price" /><br />
+            <input type="button"  id="obtn" onclick="addObject()" value="添加" />
+        </form>
+    </div>
+</body>
+</html>
