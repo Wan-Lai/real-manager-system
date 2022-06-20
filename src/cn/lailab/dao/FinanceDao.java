@@ -19,9 +19,9 @@ public class FinanceDao {
 	}
 
 	// É¾³ý²Ù×÷
-	public static boolean deleteFinanceByCId(int id) throws Exception {
-		String sql = "DELETE FROM finance" + "WHERE c_id = ?";
-		int rst = sqlHelper.updateByPstmt(sql, id);
+	public static boolean deleteFinanceByCIdAndEid(int cid, int eid) throws Exception {
+		String sql = "DELETE FROM finance WHERE c_id = ? AND e_id = ?";
+		int rst = sqlHelper.updateByPstmt(sql, cid, eid);
 		return rst == 1;
 	}
 
@@ -35,7 +35,7 @@ public class FinanceDao {
 
 	// ²éÑ¯²Ù×÷
 	public static List<Finance> queryAllFinance() throws Exception {
-		String sql = "SELECT c_id, e_id, c_price, c_payment_way, c_type, c_time FROM employee";
+		String sql = "SELECT c_id, e_id, c_price, c_payment_way, c_type, c_time FROM finance";
 		ResultSet rst = sqlHelper.query(sql);
 		List<Finance> fins = new ArrayList<Finance>();
 		while (rst.next()) {
