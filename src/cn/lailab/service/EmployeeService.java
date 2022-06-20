@@ -55,91 +55,95 @@ public class EmployeeService extends HttpServlet {
 		Result rst = new Result();
 		// 判断操作
 		switch (operate) {
-			// 增加操作
-			case "add":
-				name = request.getParameter("name");
-				username = request.getParameter("username");
-				gender = request.getParameter("gender");
-				age = Integer.parseInt(request.getParameter("age"));
-				phone = request.getParameter("phone");
-				department = request.getParameter("department");
-				position = request.getParameter("position");
-				salary = Double.parseDouble(request.getParameter("salary"));
-				Employee emp1 = new Employee();
-				emp1.setName(name);
-				emp1.setUsername(username);
-				emp1.setGender(gender);
-				emp1.setAge(age);
-				emp1.setPhone(phone);
-				emp1.setDapartment(department);
-				emp1.setPosition(position);
-				emp1.setSalary(salary);
-				try {
-					boolean statu = EmployeeDao.addEmployee(emp1);
-					rst.setCode(200);
-					rst.setMessage((statu?"1":"0"));
-				} catch (Exception e) {
-					rst.setCode(400);
-					rst.setMessage("添加失败！");
-					e.printStackTrace();
-				}
-				break;
-			case "delete":
-				id = Integer.parseInt(request.getParameter("id"));
-				try {
-					boolean statu = EmployeeDao.deleteEmployeeById(id);
-					rst.setCode(200);
-					rst.setMessage((statu?"1":"0"));
-				} catch (Exception e) {
-					rst.setCode(400);
-					rst.setMessage("删除失败！");
-					e.printStackTrace();
-				}
-				break;
-			case "update":
-				id = Integer.parseInt(request.getParameter("id"));
-				name = request.getParameter("name");
-				username = request.getParameter("username");
-				gender = request.getParameter("gender");
-				age = Integer.parseInt(request.getParameter("age"));
-				phone = request.getParameter("phone");
-				department = request.getParameter("department");
-				position = request.getParameter("position");
-				salary = Double.parseDouble(request.getParameter("salary"));
-				Employee emp2 = new Employee();
-				emp2.setId(id);
-				emp2.setName(name);
-				emp2.setUsername(username);
-				emp2.setGender(gender);
-				emp2.setAge(age);
-				emp2.setPhone(phone);
-				emp2.setDapartment(department);
-				emp2.setPosition(position);
-				emp2.setSalary(salary);
-				try {
-					boolean statu = EmployeeDao.updateEmployee(emp2);
-					rst.setCode(200);
-					rst.setMessage((statu?"1":"0"));
-				} catch (Exception e) {
-					rst.setCode(400);
-					rst.setMessage("修改失败！");
-					e.printStackTrace();
-				}
-				break;
-			case "queryAll":
-				try {
-					List<Employee> emps = EmployeeDao.queryAllEmployee();
-					JSONArray ja = new JSONArray().fluentAddAll(emps);
-					rst.setCode(200);
-					rst.setMessage(ja.toString());
-				} catch (Exception e) {
-					rst.setCode(400);
-				}
-				break;
-			default:
+		// 增加操作
+		case "add":
+			name = request.getParameter("name");
+			username = request.getParameter("username");
+			gender = request.getParameter("gender");
+			age = Integer.parseInt(request.getParameter("age"));
+			phone = request.getParameter("phone");
+			department = request.getParameter("department");
+			position = request.getParameter("position");
+			salary = Double.parseDouble(request.getParameter("salary"));
+			Employee emp1 = new Employee();
+			emp1.setName(name);
+			emp1.setUsername(username);
+			emp1.setGender(gender);
+			emp1.setAge(age);
+			emp1.setPhone(phone);
+			emp1.setDapartment(department);
+			emp1.setPosition(position);
+			emp1.setSalary(salary);
+			try {
+				boolean statu = EmployeeDao.addEmployee(emp1);
+				rst.setCode(200);
+				rst.setMessage((statu ? "1" : "0"));
+			} catch (Exception e) {
 				rst.setCode(400);
-				rst.setMessage("未定义此操作");
-				break;
+				rst.setMessage("添加失败！");
+				e.printStackTrace();
+			}
+			break;
+		// 删除操作
+		case "delete":
+			id = Integer.parseInt(request.getParameter("id"));
+			try {
+				boolean statu = EmployeeDao.deleteEmployeeById(id);
+				rst.setCode(200);
+				rst.setMessage((statu ? "1" : "0"));
+			} catch (Exception e) {
+				rst.setCode(400);
+				rst.setMessage("删除失败！");
+				e.printStackTrace();
+			}
+			break;
+		// 修改操作
+		case "update":
+			id = Integer.parseInt(request.getParameter("id"));
+			name = request.getParameter("name");
+			username = request.getParameter("username");
+			gender = request.getParameter("gender");
+			age = Integer.parseInt(request.getParameter("age"));
+			phone = request.getParameter("phone");
+			department = request.getParameter("department");
+			position = request.getParameter("position");
+			salary = Double.parseDouble(request.getParameter("salary"));
+			Employee emp2 = new Employee();
+			emp2.setId(id);
+			emp2.setName(name);
+			emp2.setUsername(username);
+			emp2.setGender(gender);
+			emp2.setAge(age);
+			emp2.setPhone(phone);
+			emp2.setDapartment(department);
+			emp2.setPosition(position);
+			emp2.setSalary(salary);
+			try {
+				boolean statu = EmployeeDao.updateEmployee(emp2);
+				rst.setCode(200);
+				rst.setMessage((statu ? "1" : "0"));
+			} catch (Exception e) {
+				rst.setCode(400);
+				rst.setMessage("修改失败！");
+				e.printStackTrace();
+			}
+			break;
+		// 查询操作
+		case "queryAll":
+			try {
+				List<Employee> emps = EmployeeDao.queryAllEmployee();
+				JSONArray ja = new JSONArray().fluentAddAll(emps);
+				rst.setCode(200);
+				rst.setMessage(ja.toString());
+			} catch (Exception e) {
+				rst.setCode(400);
+				e.printStackTrace();
+			}
+			break;
+		default:
+			rst.setCode(400);
+			rst.setMessage("未定义此操作");
+			break;
 		}
 		out.println(rst.toString());
 	}
