@@ -51,7 +51,7 @@ public class EmployeeDao {
 			emp.setAge(rst.getInt(5));
 			emp.setPhone(rst.getString(6));
 			emp.setDapartment(rst.getString(7));
-			emp.setPhone(rst.getString(8));
+			emp.setPosition(rst.getString(8));
 			emp.setSalary(rst.getDouble(9));
 			emps.add(emp);
 		}
