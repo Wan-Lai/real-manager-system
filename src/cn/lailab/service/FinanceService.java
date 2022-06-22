@@ -44,6 +44,12 @@ public class FinanceService extends HttpServlet {
 		String paymentway;
 		// 财务类型
 		String type;
+		// 支付金额
+		double paymentamount;
+		// 贷款金额
+		double loanamount;
+		// 银行名称
+		String bankname;
 		// 财务时间
 		String time;
 		// 返回值对象
@@ -57,6 +63,9 @@ public class FinanceService extends HttpServlet {
 			price = Double.parseDouble(request.getParameter("price"));
 			paymentway = request.getParameter("paymentway");
 			type = request.getParameter("type");
+			paymentamount = Double.parseDouble(request.getParameter("paymentamount"));
+			loanamount = Double.parseDouble(request.getParameter("loanamount"));
+			bankname = request.getParameter("bankname");
 			time = request.getParameter("time");
 			Finance fin1 = new Finance();
 			fin1.setCid(cid);
@@ -64,6 +73,9 @@ public class FinanceService extends HttpServlet {
 			fin1.setPrice(price);
 			fin1.setPaymentway(paymentway);
 			fin1.setType(type);
+			fin1.setPaymentamount(paymentamount);
+			fin1.setLoanamount(loanamount);
+			fin1.setBankname(bankname);
 			fin1.setTime(time);
 			try {
 				boolean statu = FinanceDao.addFinance(fin1);
@@ -96,6 +108,9 @@ public class FinanceService extends HttpServlet {
 			price = Double.parseDouble(request.getParameter("price"));
 			paymentway = request.getParameter("paymentway");
 			type = request.getParameter("type");
+			paymentamount = Double.parseDouble(request.getParameter("paymentamount"));
+			loanamount = Double.parseDouble(request.getParameter("loanamount"));
+			bankname = request.getParameter("bankname");
 			time = request.getParameter("time");
 			Finance fin2 = new Finance();
 			fin2.setCid(cid);
@@ -103,6 +118,9 @@ public class FinanceService extends HttpServlet {
 			fin2.setPrice(price);
 			fin2.setPaymentway(paymentway);
 			fin2.setType(type);
+			fin2.setPaymentamount(paymentamount);
+			fin2.setLoanamount(loanamount);
+			fin2.setBankname(bankname);
 			fin2.setTime(time);
 			try {
 				boolean statu = FinanceDao.updateFinance(fin2);

@@ -27,7 +27,7 @@ public class FinanceDao {
 
 	// ÐÞ¸Ä²Ù×÷
 	public static boolean updateFinance(Finance fin) throws Exception {
-		String sql = "UPDATE finance SET f_price=?, f_payment_way=?, f_type=? f_payment_amount=?, f_loan_amount=?, f_bank_name=?, WHERE c_id=? AND e_id=?";
+		String sql = "UPDATE finance SET f_price=?, f_payment_way=?, f_type=?, f_payment_amount=?, f_loan_amount=?, f_bank_name=? WHERE c_id=? AND e_id=?";
 		int rst = sqlHelper.updateByPstmt(sql, fin.getPrice(), fin.getPaymentway(), fin.getType(),
 				fin.getPaymentamount(), fin.getLoanamount(), fin.getBankname(), fin.getCid(), fin.getEid());
 		return rst == 1;
