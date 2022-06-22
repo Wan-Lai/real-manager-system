@@ -50,13 +50,7 @@
             <sapn>年&emsp;&emsp;龄:</sapn><input type="number" name="eage" max="100" min="1" /><br />
             <sapn>电&emsp;&emsp;话:</sapn><input type="tel" name="ephone" /><br />
             <sapn>部&emsp;&emsp;门:</sapn><input type="text" name="edapartment" /><br />
-            <sapn>职&emsp;&emsp;位:</sapn><input type="text" list="mylist1" name="eposition" /><br />
-			<datalist id="mylist1" name="position">
-				<option value="0">保洁员</option>
-				<option value="1">前台</option>
-				<option value="2">服务员</option>
-				<option value="3">经理</option>
-			</datalist>
+            <sapn>职&emsp;&emsp;位:</sapn><input type="text" name="eposition" /><br />
 			薪&emsp;&emsp;水:<input type="number" name="esalary" /><br />
             <input type="button" name="btn" value="注册" />
         </form>
@@ -85,7 +79,14 @@
             <span>员工编号:</span><input type="text" name="eid"/><br />
             <span>账单金额:</span><input type="text" name="fprice"/><br />
             <span>付款方式:</span><input type="text" name="fpaymentway"/><br />
-            <span>财务类型:</span><input type="number" name="ftype"/><br />
+            <span>财务类型:</span><input type="text" name="ftype" list="mylist3"/><br />
+            <datalist id="mylist3" name="ftype">
+            	<option value="首付">首付</option>
+            	<option value="定金">定金</option>
+            	<option value="全款">全款</option>
+            	<option value="贷款">贷款</option>
+            	<option value="一次性付清">一次性付清</option>
+            </datalist>
             <input type="button" name="btn" value="提交">
         </form>
     </div>
