@@ -17,6 +17,8 @@ public class Customer {
 	String idstatu;
 	// 顾客登记时间
 	String time;
+	// 员工编号
+	int eid;
 	// 顾客希望类型
 	String wanttype;
 	// 备注
@@ -26,7 +28,7 @@ public class Customer {
 	}
 
 	public Customer(int id, String name, String buyaddress, String address, String phone, String idnum, String idstatu,
-			String time, String wanttype, String commend) {
+			String time, String wanttype, int eid, String commend) {
 		this.id = id;
 		this.name = name;
 		this.buyaddress = buyaddress;
@@ -36,6 +38,7 @@ public class Customer {
 		this.idstatu = idstatu;
 		this.time = time;
 		this.wanttype = wanttype;
+		this.eid = eid;
 		this.commend = commend;
 	}
 
@@ -109,6 +112,14 @@ public class Customer {
 
 	public void setWanttype(String wanttype) {
 		this.wanttype = wanttype;
+	}
+
+	public int getEid() {
+		return eid;
+	}
+
+	public void setEid(int eid) {
+		this.eid = eid;
 	}
 
 	public String getCommend() {

@@ -1,17 +1,16 @@
 package cn.lailab.sql;
 
-import java.sql.ResultSet;
 import java.util.List;
+import java.util.ArrayList;
 
-import cn.lailab.dao.EmployeeDao;
-import cn.lailab.entity.Employee;
+import cn.lailab.entity.Customer;
 
 public class test {
 	public static void main(String[] args) {
 		try {
-			List<Employee> emps = EmployeeDao.queryAllEmployee();
-			for (Employee emp : emps) {
-				System.out.println(emp.getName());
+			List<Customer> customers = new ArrayList<Customer>();
+			for(Customer cus : customers) {
+				System.out.println(cus.getName()+":"+cus.getId());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

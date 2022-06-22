@@ -48,6 +48,8 @@ public class CustomerService extends HttpServlet {
 		String time;
 		// 期望类型
 		String wanttype;
+		// 员工编号
+		int eid;
 		// 顾客备注
 		String commend;
 		// 员工薪水
@@ -65,6 +67,7 @@ public class CustomerService extends HttpServlet {
 			idnum = request.getParameter("idnum");
 			idstatu = request.getParameter("idstatu");
 			wanttype = request.getParameter("wanttype");
+			eid = Integer.parseInt(request.getParameter("eid"));
 			commend = request.getParameter("commend");
 			Customer cus1 = new Customer();
 			cus1.setName(name);
@@ -74,6 +77,7 @@ public class CustomerService extends HttpServlet {
 			cus1.setIdnum(idnum);
 			cus1.setIdstatu(idstatu);
 			cus1.setWanttype(wanttype);
+			cus1.setEid(eid);
 			cus1.setCommend(commend);
 			try {
 				boolean statu = CustomerDao.addCustomer(cus1);
@@ -109,6 +113,7 @@ public class CustomerService extends HttpServlet {
 			idstatu = request.getParameter("idstatu");
 			time = request.getParameter("time");
 			wanttype = request.getParameter("wanttype");
+			eid = Integer.parseInt(request.getParameter("eid"));
 			commend = request.getParameter("commend");
 			Customer cus2 = new Customer();
 			cus2.setId(id);
@@ -120,6 +125,7 @@ public class CustomerService extends HttpServlet {
 			cus2.setIdstatu(idstatu);
 			cus2.setTime(time);
 			cus2.setWanttype(wanttype);
+			cus2.setEid(eid);
 			cus2.setCommend(commend);
 			try {
 				boolean statu = CustomerDao.updateCustomer(cus2);

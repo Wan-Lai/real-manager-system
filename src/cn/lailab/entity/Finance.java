@@ -11,18 +11,28 @@ public class Finance {
 	String paymentway;
 	// 财务类型
 	String type;
+	// 付款金额
+	double paymentamount;
+	// 贷款金额
+	double loanamount;
+	// 银行名称
+	String bankname;
 	// 财务时间
 	String time;
 
 	public Finance() {
 	}
 
-	public Finance(int cid, int eid, double price, String paymentway, String type, String time) {
+	public Finance(int cid, int eid, double price, String paymentway, String type, double paymentamount,
+			double loanamount, String bankname, String time) {
 		this.cid = cid;
 		this.eid = eid;
 		this.price = price;
 		this.paymentway = paymentway;
 		this.type = type;
+		this.paymentamount = paymentamount;
+		this.loanamount = loanamount;
+		this.bankname = bankname;
 		this.time = time;
 	}
 
@@ -64,6 +74,30 @@ public class Finance {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public double getPaymentamount() {
+		return paymentamount;
+	}
+
+	public void setPaymentamount(double paymentamount) {
+		this.paymentamount = paymentamount;
+	}
+
+	public double getLoanamount() {
+		return loanamount;
+	}
+
+	public void setLoanamount(double loanamount) {
+		this.loanamount = loanamount;
+	}
+
+	public String getBankname() {
+		return bankname;
+	}
+
+	public void setBankname(String bankname) {
+		this.bankname = bankname;
 	}
 
 	public String getTime() {

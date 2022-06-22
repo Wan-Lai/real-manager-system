@@ -71,7 +71,7 @@ public class EmployeeService extends HttpServlet {
 			emp1.setGender(gender);
 			emp1.setAge(age);
 			emp1.setPhone(phone);
-			emp1.setDapartment(department);
+			emp1.setDepartment(department);
 			emp1.setPosition(position);
 			emp1.setSalary(salary);
 			try {
@@ -115,7 +115,7 @@ public class EmployeeService extends HttpServlet {
 			emp2.setGender(gender);
 			emp2.setAge(age);
 			emp2.setPhone(phone);
-			emp2.setDapartment(department);
+			emp2.setDepartment(department);
 			emp2.setPosition(position);
 			emp2.setSalary(salary);
 			try {

@@ -14,7 +14,7 @@ public class Employee {
 	// 员工电话号
 	String phone;
 	// 员工部门
-	String dapartment;
+	String department;
 	// 员工职位
 	String position;
 	// 员工薪水
@@ -23,7 +23,7 @@ public class Employee {
 	public Employee() {
 	}
 
-	public Employee(int id, String name, String username, String gender, int age, String phone, String dapartment,
+	public Employee(int id, String name, String username, String gender, int age, String phone, String department,
 			String position, double salary) {
 		this.id = id;
 		this.name = name;
@@ -31,7 +31,7 @@ public class Employee {
 		this.gender = gender;
 		this.age = age;
 		this.phone = phone;
-		this.dapartment = dapartment;
+		this.department = department;
 		this.position = position;
 		this.salary = salary;
 	}
@@ -84,12 +84,12 @@ public class Employee {
 		this.phone = phone;
 	}
 
-	public String getDapartment() {
-		return dapartment;
+	public String getDepartment() {
+		return department;
 	}
 
-	public void setDapartment(String dapartment) {
-		this.dapartment = dapartment;
+	public void setDepartment(String dapartment) {
+		this.department = dapartment;
 	}
 
 	public String getPosition() {
@@ -111,7 +111,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", username=" + username + ", gender=" + gender + ", age="
-				+ age + ", phone=" + phone + ", dapartment=" + dapartment + ", position=" + position + ", salary="
+				+ age + ", phone=" + phone + ", department=" + department + ", position=" + position + ", salary="
 				+ salary + "]";
 	}
 }

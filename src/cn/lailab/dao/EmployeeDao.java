@@ -17,7 +17,7 @@ public class EmployeeDao {
 		String sql = "INSERT INTO employee(e_name, e_username, e_gender, e_age, e_phone, e_department, e_position, e_salary)"
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 		int rst = sqlHelper.updateByPstmt(sql, emp.getName(), emp.getUsername(), emp.getGender(), emp.getAge(),
-				emp.getPhone(), emp.getDapartment(), emp.getPosition(), emp.getSalary());
+				emp.getPhone(), emp.getDepartment(), emp.getPosition(), emp.getSalary());
 		return rst == 1;
 	}
 
@@ -32,7 +32,7 @@ public class EmployeeDao {
 	public static boolean updateEmployee(Employee emp) throws Exception {
 		String sql = "UPDATE employee SET e_name=?, e_username=?, e_gender=?,e_age=?, e_phone=?, e_department=?, e_position=?, e_salary=?"
 				+ "WHERE e_id=?";
-		int rst = sqlHelper.updateByPstmt(sql, emp.getName(), emp.getUsername(), emp.getGender(), emp.getAge(), emp.getPhone(), emp.getDapartment(),
+		int rst = sqlHelper.updateByPstmt(sql, emp.getName(), emp.getUsername(), emp.getGender(), emp.getAge(), emp.getPhone(), emp.getDepartment(),
 				 emp.getPosition(), emp.getSalary(), emp.getId());
 		return rst == 1;
 	}
@@ -50,7 +50,7 @@ public class EmployeeDao {
 			emp.setGender(rst.getString(4));
 			emp.setAge(rst.getInt(5));
 			emp.setPhone(rst.getString(6));
-			emp.setDapartment(rst.getString(7));
+			emp.setDepartment(rst.getString(7));
 			emp.setPosition(rst.getString(8));
 			emp.setSalary(rst.getDouble(9));
 			emps.add(emp);
