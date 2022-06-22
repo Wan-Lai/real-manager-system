@@ -32,11 +32,11 @@ CREATE TABLE `customer` (
   `c_want_type` varchar(40) DEFAULT NULL COMMENT '期望户型',
   `c_commend` varchar(500) DEFAULT NULL COMMENT '备注事件',
   PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `customer` */
 
-insert  into `customer`(`c_id`,`c_name`,`c_buy_address`,`c_address`,`c_phone`,`c_id_num`,`c_id_statu`,`c_time`,`c_want_type`,`c_commend`) values (1,'张三','河北张家口','河北邯郸','1231231231312','12313123412313213','已认证','2022-12-10 00:00:00','学区房','这是备注'),(2,'张雨dsf','河北邢台','河北邯郸','12312313121','791837981372813','已认证','2022-10-10 00:00:00','学区房','无'),(10,'张雨dsf','河北邢台','河北邯郸','12312313121','791837981372813','已认证','2022-10-10 00:00:00','学区房','无');
+insert  into `customer`(`c_id`,`c_name`,`c_buy_address`,`c_address`,`c_phone`,`c_id_num`,`c_id_statu`,`c_time`,`c_want_type`,`c_commend`) values (1,'张三','河北张家口','河北邯郸','1231231231312','12313123412313213','已认证','2022-12-10 00:00:00','学区房','这是备注'),(2,'张宇3','河北张家口','河北邯郸','12312313121','791837981372813','已认证','2022-06-20 20:36:28','学区房','无');
 
 /*Table structure for table `employee` */
 
@@ -57,7 +57,7 @@ CREATE TABLE `employee` (
 
 /*Data for the table `employee` */
 
-insert  into `employee`(`e_id`,`e_name`,`e_username`,`e_gender`,`e_age`,`e_phone`,`e_department`,`e_position`,`e_salary`) values (1,'王五','wagnwu','女',22,'1231231123132','人事部','经理',5000.00),(4,'王六','wagnliu','女',22,'123126423132','人事部','经理',4500.00),(5,'陈启','wagnliu','女',22,'123126423132','人事部','经理',4500.00),(6,'赵八','wagnliu','女',22,'123126423132','人事部','经理',4500.00),(7,'称九','wagnliu','女',22,'123126423132','人事部','经理',4500.00),(8,'民团','wagnliu','女',22,'123126423132','人事部','经理',4500.00),(9,'面团','wagnliu','女',22,'123126423132','人事部','经理',4500.00);
+insert  into `employee`(`e_id`,`e_name`,`e_username`,`e_gender`,`e_age`,`e_phone`,`e_department`,`e_position`,`e_salary`) values (1,'王五','wagnwu','man',22,'1231231123132','销售部','经理',5000.00),(4,'王六','wagnliu','女',22,'123126423132','人事部','经理',4500.00),(5,'陈启','wagnliu','女',22,'123126423132','人事部','经理',4500.00),(6,'赵八','wagnliu','女',22,'123126423132','人事部','经理',4500.00),(7,'称九','wagnliu','女',22,'123126423132','人事部','经理',4500.00),(9,'面团0','wagnliuw','man',22,'123126423132','认识部','经理',4500.00);
 
 /*Table structure for table `finance` */
 
@@ -66,16 +66,16 @@ DROP TABLE IF EXISTS `finance`;
 CREATE TABLE `finance` (
   `c_id` int(10) NOT NULL COMMENT '顾客ID',
   `e_id` int(10) NOT NULL COMMENT '员工ID',
-  `c_price` float(7,2) DEFAULT NULL COMMENT '付款金额',
-  `c_payment_way` varchar(20) DEFAULT NULL COMMENT '收款方式',
-  `c_type` varchar(40) DEFAULT NULL COMMENT '财务类型',
-  `c_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '财务时间',
+  `f_price` float(7,2) DEFAULT NULL COMMENT '付款金额',
+  `f_payment_way` varchar(20) DEFAULT NULL COMMENT '收款方式',
+  `f_type` varchar(40) DEFAULT NULL COMMENT '财务类型',
+  `f_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '财务时间',
   PRIMARY KEY (`c_id`,`e_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `finance` */
 
-insert  into `finance`(`c_id`,`e_id`,`c_price`,`c_payment_way`,`c_type`,`c_time`) values (1,1,1000.00,'微信','输入','2022-10-10 00:00:00'),(2,1,1000.00,'支付宝','支出','2022-06-20 08:16:00'),(2,2,1000.00,'支付宝','支出','2022-06-20 08:16:00');
+insert  into `finance`(`c_id`,`e_id`,`f_price`,`f_payment_way`,`f_type`,`f_time`) values (1,1,1000.00,'微信','首付','2022-06-22 08:18:16'),(2,1,1000.00,'支付宝','贷款','2022-06-22 08:18:25'),(2,2,1000.00,'支付宝','贷款','2022-06-22 08:18:34');
 
 /*Table structure for table `house` */
 
