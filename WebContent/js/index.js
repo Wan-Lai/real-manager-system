@@ -10,7 +10,9 @@ window.onload = function() {
 }
 // 查看员工信息
 function changeEmployee() {
-	var show_table = document.getElementById("data_table");
+	var show_table = document.getElementById("data_table");	
+	show_table.style.height = "auto";
+	show_table.style.width = "90%";
 	MyAjax("employee", "queryAll", "", function(result) {
 		result = eval("(" + result + ")");
 		var rst = result2employee(result.message);
@@ -19,7 +21,9 @@ function changeEmployee() {
 }
 // 查看顾客信息
 function changeCustomer() { 
-	var show_table = document.getElementById("data_table");
+	var show_table = document.getElementById("data_table");	
+	show_table.style.height = "auto";
+	show_table.style.width = "90%";
 	MyAjax("customer", "queryAll", "", function(result) {
 		result = eval("(" + result + ")");
 		show_table.innerHTML = result2customer(result.message);
@@ -27,15 +31,60 @@ function changeCustomer() {
 }
 // 查看账单信息
 function changeFinance() {
-	var show_table = document.getElementById("data_table");
+	var show_table = document.getElementById("data_table");	
+	show_table.style.height = "auto";
+	show_table.style.width = "90%";
 	MyAjax("finance", "queryAll", "", function(result) {
 		result = eval("(" + result + ")");
 		show_table.innerHTML = result2finance(result.message);
 	});
 }
+// 查看账单UI界面
+function changeFinanceUI() {
+	var show_table = document.getElementById("data_table");
+	show_table.style.height = "400px";
+	show_table.style.width = "400px";
+	show_table.innerHTML = "";
+	var datas  = [];
+	for(var i=0; i<finances.length; i++) {
+		var data = {};
+		data.value = finances[i].price;
+		data.name = finances[i].cid+","+finances[i].eid;
+		datas.push(data);
+	}
+	for(var i=0; i<datas.length; i++) {
+		var name = datas[i];
+		var rstname = "[";
+		for(var j=0; j<customers.length; j++) {
+			if(name.name.split(",")[0] == customers[j].id)
+				rstname += customers[j].name;
+		}
+		for(var j=0; j<employees.length; j++) {
+			if(name.name.split(",")[1] == employees[j].id)
+				rstname += ":"+employees[j].name;
+				
+		}
+		datas[i].name = rstname+"]";
+	}
+	var names = [];
+	for(var i=0; i<datas.length; i++) {
+		datas[i].name += ":"+datas[i].value;
+		names.push(datas[i].name);
+	}
+	// 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(show_table);
+    // 指定图表的配置项和数据
+    var option = {
+      legend: { orient: 'vertical', x: 'left', data: names },
+	  series: [ { type: 'pie', radius: ['40%', '70%'], avoidLabelOverlap: false,label: { show: false, position: 'center', emphasis: { show: true } },labelLine: { show: false },emphasis: { label: { show: true, fontSize: '30', fontWeight: 'bold' } },data: datas } ] };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+}
 // 查看楼盘信息
 function changeHouse() {
-	var show_table = document.getElementById("data_table");
+	var show_table = document.getElementById("data_table");	
+	show_table.style.height = "auto";
+	show_table.style.width = "90%";
 	MyAjax("house", "queryAll", "", function(result) {
 		result = eval("(" + result + ")");
 		show_table.innerHTML = result2house(result.message);
