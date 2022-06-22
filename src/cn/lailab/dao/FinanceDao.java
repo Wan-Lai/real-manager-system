@@ -11,7 +11,7 @@ public class FinanceDao {
 
 	// 增加操作
 	public static boolean addFinance(Finance fin) throws Exception {
-		String sql = "INSERT INTO finance(c_id, e_id, c_price, c_payment_way, c_type)"
+		String sql = "INSERT INTO finance(c_id, e_id, f_price, f_payment_way, f_type)"
 				+ "VALUES(?, ?, ?, ?, ?)";
 		int rst = sqlHelper.updateByPstmt(sql, fin.getCid(), fin.getEid(), fin.getPrice(), fin.getPaymentway(),
 				fin.getType());
@@ -27,7 +27,7 @@ public class FinanceDao {
 
 	// 修改操作
 	public static boolean updateFinance(Finance fin) throws Exception {
-		String sql = "UPDATE finance SET c_price=?, c_payment_way=?, c_type=? WHERE c_id=? AND e_id=?";
+		String sql = "UPDATE finance SET f_price=?, f_payment_way=?, f_type=? WHERE c_id=? AND e_id=?";
 		int rst = sqlHelper.updateByPstmt(sql, fin.getPrice(), fin.getPaymentway(), fin.getType(),
 				fin.getCid(), fin.getEid());
 		return rst == 1;
@@ -35,7 +35,7 @@ public class FinanceDao {
 
 	// 查询操作
 	public static List<Finance> queryAllFinance() throws Exception {
-		String sql = "SELECT c_id, e_id, c_price, c_payment_way, c_type, c_time FROM finance";
+		String sql = "SELECT c_id, e_id, f_price, f_payment_way, f_type, f_time FROM finance";
 		ResultSet rst = sqlHelper.query(sql);
 		List<Finance> fins = new ArrayList<Finance>();
 		while (rst.next()) {
