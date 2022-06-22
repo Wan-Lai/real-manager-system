@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/echarts.min.js"></script>
+    <script src="js/echarts.js"></script>
     <script src="js/index.js"></script>
 </head>
 <body>
@@ -26,13 +26,19 @@
                     <label onclick="changeCustomer()">顾客管理</label>
                 </li>
                 <li class="list-1">
-                    <label>财务管理</label>
+                    <label onclick="changeFinance()">财务管理</label>
                 </li>
                 <li class="list-2">
                 	<label onclick="changeFinance()">详细展示</label>
                 </li>
                 <li class="list-2">
-                	<label onclick="changeFinanceUI()">图像展示</label>
+                	<label onclick="changeFinanceSaleUI()">销售统计</label>
+                </li>
+                <li class="list-2">
+                	<label onclick="changeFinanceMoneyUI()">付款统计</label>
+                </li>
+                <li class="list-2">
+                	<label onclick="changeFinanceLoanUI()">贷款统计</label>
                 </li>
                 <li class="list-1">
                     <label onclick="changeHouse()">楼盘管理</label>
@@ -40,7 +46,7 @@
             </ul>
         </div>
         <div class="main-right">
-            <table id="data_table">
+            <table id="data_table" ref="myChart">
             </table>
         </div>
     </div>
@@ -52,11 +58,11 @@
             <sapn>编&emsp;&emsp;号:</sapn><input type="text" name="eno" placeholder="系统生成,无法添加" readonly/><br />
             <sapn>姓&emsp;&emsp;名:</sapn><input type="text" name="ename" /><br />
             <sapn>昵&emsp;&emsp;称:</sapn><input type="text" name="eusername"><br />      
-            <sapn>性&emsp;&emsp;别:</sapn><input type="radio" name="egender" value="man" checked/>男
-            <input type="radio" name="egender" value="woman" />女<br />
+            <sapn>性&emsp;&emsp;别:</sapn><input type="radio" name="egender" value="男" checked/>男
+            <input type="radio" name="egender" value="女" />女<br />
             <sapn>年&emsp;&emsp;龄:</sapn><input type="number" name="eage" max="100" min="1" /><br />
             <sapn>电&emsp;&emsp;话:</sapn><input type="tel" name="ephone" /><br />
-            <sapn>部&emsp;&emsp;门:</sapn><input type="text" name="edapartment" /><br />
+            <sapn>部&emsp;&emsp;门:</sapn><input type="text" name="edepartment" /><br />
             <sapn>职&emsp;&emsp;位:</sapn><input type="text" name="eposition" /><br />
 			薪&emsp;&emsp;水:<input type="number" name="esalary" /><br />
             <input type="button" name="btn" value="注册" />
@@ -74,6 +80,7 @@
             <sapn>身份证号:</sapn><input type="text" name="cidnum" /><br />
             <sapn>身份证状态:</sapn><input type="text" name="cidstatu" /><br />
 			<sapn>希望类型:</sapn><input type="text" name="cwanttype" /><br />
+			<span>邀请人员:</span><input type="number" name="eid"/><br />
 			<sapn>备注:</sapn><input type="text" name="ccommend" /><br />
             <input type="button" name="btn" value="注册" />
         </form>
@@ -94,6 +101,9 @@
             	<option value="贷款">贷款</option>
             	<option value="一次性付清">一次性付清</option>
             </datalist>
+            <span>支付金额:</span><input type="text" name="fpaymentamount"/><br />
+            <span>贷款金额:</span><input type="text" name="floanamount"/><br />
+            <span>银行名称:</span><input type="text" name="fbankname"/><br />
             <input type="button" name="btn" value="提交">
         </form>
     </div>
