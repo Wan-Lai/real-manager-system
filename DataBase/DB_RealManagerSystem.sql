@@ -2,7 +2,7 @@
 SQLyog Ultimate v12.08 (64 bit)
 MySQL - 5.5.37 : Database - db_realmanagersystem
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
